@@ -5,8 +5,11 @@
  */
 package vistas;
 
+import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import libreriasExternas.MensajesModales;
 
 
 /**
@@ -45,7 +48,7 @@ public class frmLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        btnLogin1 = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
         lblUser = new javax.swing.JLabel();
         lblUser2 = new javax.swing.JLabel();
 
@@ -63,6 +66,19 @@ public class frmLogin extends javax.swing.JFrame {
         btnCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
+        btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnCerrarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnCerrarMouseReleased(evt);
+            }
+        });
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         btnMinimizar.setBackground(new java.awt.Color(250, 250, 250));
         btnMinimizar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -70,6 +86,14 @@ public class frmLogin extends javax.swing.JFrame {
         btnMinimizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
+        btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnMinimizarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnMinimizarMouseReleased(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setText("Inicio de Sesión");
@@ -93,17 +117,33 @@ public class frmLogin extends javax.swing.JFrame {
         btnLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnLogin.setContentAreaFilled(false);
         btnLogin.setOpaque(true);
+        btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnLoginMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnLoginMouseReleased(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel4.setText("¿No tiene una cuenta aún? ");
 
-        btnLogin1.setBackground(new java.awt.Color(255, 255, 255));
-        btnLogin1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnLogin1.setForeground(new java.awt.Color(102, 102, 102));
-        btnLogin1.setText("Registrarse");
-        btnLogin1.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(177, 255, 160)));
-        btnLogin1.setContentAreaFilled(false);
-        btnLogin1.setOpaque(true);
+        btnRegistro.setBackground(new java.awt.Color(255, 255, 255));
+        btnRegistro.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnRegistro.setForeground(new java.awt.Color(102, 102, 102));
+        btnRegistro.setText("Registrarse");
+        btnRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(177, 255, 160)));
+        btnRegistro.setContentAreaFilled(false);
+        btnRegistro.setOpaque(true);
+        btnRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnRegistroMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistroMouseReleased(evt);
+            }
+        });
 
         lblUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto Mora\\Documents\\NetBeansProjects\\HealthyBook\\lib\\unknown\\binary\\res\\man-user.png")); // NOI18N
         lblUser.setPreferredSize(new java.awt.Dimension(20, 20));
@@ -145,7 +185,7 @@ public class frmLogin extends javax.swing.JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(frmLoginLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
-                        .addComponent(btnLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(frmLoginLayout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +223,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jLabel4)
                 .addGap(20, 20, 20)
-                .addComponent(btnLogin1)
+                .addComponent(btnRegistro)
                 .addContainerGap(77, Short.MAX_VALUE))
         );
 
@@ -200,6 +240,51 @@ public class frmLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        MensajesModales.mensajePlano("Mensaje correcto", "Click Me!");
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
+        // TODO add your handling code here:
+        btnLogin.setBorder(new LineBorder(new Color(0,0,0)));
+    }//GEN-LAST:event_btnLoginMousePressed
+
+    private void btnLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseReleased
+        // TODO add your handling code here:
+        btnLogin.setBorder(new LineBorder(new Color(226,224,224)));
+    }//GEN-LAST:event_btnLoginMouseReleased
+
+    private void btnCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMousePressed
+        // TODO add your handling code here:
+        btnCerrar.setBorder(new LineBorder(new Color(0,0,0)));
+    }//GEN-LAST:event_btnCerrarMousePressed
+
+    private void btnCerrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseReleased
+        // TODO add your handling code here:
+        btnCerrar.setBorder(new LineBorder(new Color(226,224,224)));
+    }//GEN-LAST:event_btnCerrarMouseReleased
+
+    private void btnMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMousePressed
+        // TODO add your handling code here:
+        btnMinimizar.setBorder(new LineBorder(new Color(0,0,0)));
+    }//GEN-LAST:event_btnMinimizarMousePressed
+
+    private void btnMinimizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseReleased
+        // TODO add your handling code here:
+        btnMinimizar.setBorder(new LineBorder(new Color(226,224,224)));
+    }//GEN-LAST:event_btnMinimizarMouseReleased
+
+    private void btnRegistroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMousePressed
+        // TODO add your handling code here:
+        btnRegistro.setBorder(new LineBorder(new Color(0,0,0)));
+    }//GEN-LAST:event_btnRegistroMousePressed
+
+    private void btnRegistroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseReleased
+        // TODO add your handling code here:
+        btnRegistro.setBorder(new LineBorder(new Color(177,255,160)));
+    }//GEN-LAST:event_btnRegistroMouseReleased
 
     /**
      * @param args the command line arguments
@@ -239,8 +324,8 @@ public class frmLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JPanel frmLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
