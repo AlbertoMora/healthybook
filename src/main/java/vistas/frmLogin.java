@@ -146,7 +146,6 @@ public class frmLogin extends javax.swing.JFrame {
         });
 
         lblUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto Mora\\Documents\\NetBeansProjects\\HealthyBook\\lib\\unknown\\binary\\res\\man-user.png")); // NOI18N
-        lblUser.setPreferredSize(new java.awt.Dimension(20, 20));
 
         lblUser2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto Mora\\Documents\\NetBeansProjects\\HealthyBook\\lib\\unknown\\binary\\res\\lock.png")); // NOI18N
 
@@ -155,15 +154,10 @@ public class frmLogin extends javax.swing.JFrame {
         frmLoginLayout.setHorizontalGroup(
             frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frmLoginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frmLoginLayout.createSequentialGroup()
-                        .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, frmLoginLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(121, 121, 121))))
+                .addGap(0, 389, Short.MAX_VALUE)
+                .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(frmLoginLayout.createSequentialGroup()
                 .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -175,9 +169,12 @@ public class frmLogin extends javax.swing.JFrame {
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, frmLoginLayout.createSequentialGroup()
                                 .addGap(92, 92, 92)
-                                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel2)))
+                                .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(frmLoginLayout.createSequentialGroup()
+                                        .addComponent(lblUser)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(jLabel2)))))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, frmLoginLayout.createSequentialGroup()
                             .addGap(90, 90, 90)
                             .addComponent(lblUser2)
@@ -201,12 +198,12 @@ public class frmLogin extends javax.swing.JFrame {
                 .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(60, 60, 60)
+                .addGap(57, 57, 57)
                 .addGroup(frmLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
@@ -217,9 +214,7 @@ public class frmLogin extends javax.swing.JFrame {
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(frmLoginLayout.createSequentialGroup()
-                        .addComponent(lblUser2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblUser2))
                 .addGap(57, 57, 57)
                 .addComponent(jLabel4)
                 .addGap(20, 20, 20)
@@ -243,7 +238,11 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        MensajesModales.mensajePlano("Mensaje correcto", "Click Me!");
+        MensajesModales mensaje = new MensajesModales(this, "¿Está seguro que desea salir del sistema?","Ok", 2);
+        mensaje.ShowMessage();
+        if(mensaje.getResult() == 1){
+            this.dispose();
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
