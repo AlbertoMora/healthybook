@@ -41,11 +41,7 @@ public class MensajesModales extends JDialog {
 
     public MensajesModales(JFrame parent, String message, String buttonMessage, int opcion) {
         super(parent, "");
-        
-        double x = (parent.getLocation().getX() + (parent.getSize().getWidth()/2))-getWidth()/2;
-        double y = parent.getLocation().getY();
-        Point location = new Point((int)x,(int)y);
-        setLocation(location);
+
         this.message = message;
         this.buttonMessage = buttonMessage;
         this.opcion = opcion;
@@ -54,6 +50,7 @@ public class MensajesModales extends JDialog {
 
     public void ShowMessage() {
         initComponents(message, opcion, buttonMessage);
+        
     }
 
     public int getResult() {
@@ -64,6 +61,7 @@ public class MensajesModales extends JDialog {
         System.out.println("creating the window..");
         setUndecorated(true);
         setSize(250, 120);
+        setLocationRelativeTo(null);
         // Create a message
         JPanel topGeneralPane = new JPanel();
         JPanel botGeneralPane = new JPanel();
@@ -127,7 +125,7 @@ public class MensajesModales extends JDialog {
         getContentPane().add(topGeneralPane);
         botGeneralPane.add(buttonPane);
         getContentPane().add(botGeneralPane, BorderLayout.PAGE_END);
-        getRootPane().setBorder(new LineBorder(new Color(226, 224, 224)));
+        getRootPane().setBorder(new LineBorder(new Color(0, 0, 0)));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModal(true);
         pack();
