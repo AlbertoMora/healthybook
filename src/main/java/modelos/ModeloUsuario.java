@@ -29,6 +29,15 @@ public class ModeloUsuario {
         this.telefono = telefono;
         this.esAdmin = esAdmin;
     }
+    public ModeloUsuario(String nombre, String apellidos, String nombreUsuario, String email, String contrasena, String telefono, boolean esAdmin) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.nombreUsuario = nombreUsuario;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.telefono = telefono;
+        this.esAdmin = esAdmin;
+    }
 
     public int getId() {
         return id;

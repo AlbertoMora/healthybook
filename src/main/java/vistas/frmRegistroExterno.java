@@ -5,11 +5,13 @@
  */
 package vistas;
 
+import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
+import modelos.ModeloUsuario;
 
 /**
  *
@@ -39,19 +41,19 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         btnMinimizar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtApe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtUsuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtConContra = new javax.swing.JPasswordField();
+        txtContra = new javax.swing.JPasswordField();
         btnRegistrar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -107,37 +109,37 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel1.setText("Nombre*");
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel2.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel2.setText("Apellidos*");
 
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtApe.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel3.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel3.setText("Nombre de Usuario");
 
-        jTextField3.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel4.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
-        jLabel4.setText("Correo electrónico");
-
-        jTextField4.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        jLabel4.setText("Correo electrónico*");
 
         jLabel5.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel5.setText("Contraseña*");
 
-        jTextField5.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtEmail.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel6.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel6.setText("Confirmar Contraseña*");
 
-        jTextField6.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel7.setText("Telefono");
 
-        jTextField7.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtConContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
+
+        txtContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -149,7 +151,7 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                         .addGap(103, 103, 103)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 449, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -158,9 +160,9 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
-                            .addComponent(jTextField7))
-                        .addGap(18, 28, Short.MAX_VALUE)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+                            .addComponent(txtContra))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -171,19 +173,19 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)))))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
-                    .addComponent(jTextField4))
+                    .addComponent(txtApe, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addComponent(txtConContra))
                 .addGap(91, 91, 91))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(447, 447, 447)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(798, 798, 798)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(89, Short.MAX_VALUE)))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,9 +194,9 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(107, 107, 107)
@@ -203,24 +205,24 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(74, 74, 74)))
-                .addGap(25, 25, 25)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtConContra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(69, 69, 69))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(220, 220, 220)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(347, Short.MAX_VALUE)))
         );
 
@@ -231,6 +233,19 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         btnRegistrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnRegistrar.setContentAreaFilled(false);
         btnRegistrar.setOpaque(true);
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnRegistrarMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseReleased(evt);
+            }
+        });
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setBackground(new java.awt.Color(252, 153, 178));
         btnCancelar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
@@ -285,7 +300,7 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -338,12 +353,12 @@ public class frmRegistroExterno extends javax.swing.JFrame {
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
         // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(0, 0, 0)));
+        btnCancelar.setBorder(new LineBorder(new Color(0, 0, 0)));
     }//GEN-LAST:event_btnCancelarMousePressed
 
     private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
         // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(226, 224, 224)));
+        btnCancelar.setBorder(new LineBorder(new Color(226, 224, 224)));
     }//GEN-LAST:event_btnCancelarMouseReleased
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -357,6 +372,48 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnRegistrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMousePressed
+        // TODO add your handling code here:
+        btnRegistrar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnRegistrarMousePressed
+
+    private void btnRegistrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseReleased
+        // TODO add your handling code here:
+        btnRegistrar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnRegistrarMouseReleased
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        MensajesModales mensaje;
+        String patronEmail = "^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$";
+        if(!txtNombre.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtConContra.getText().isEmpty() && !txtConContra.getText().isEmpty() && !txtEmail.getText().isEmpty()){
+            if(txtEmail.getText().matches(patronEmail)){
+                if(new String(txtContra.getPassword()).equals(new String(txtConContra.getPassword()))){
+                    ModeloUsuario nUsuario = new ModeloUsuario(txtNombre.getText(),txtApe.getText(),txtUsuario.getText(),txtEmail.getText(), new String(txtContra.getPassword()),
+                                                               txtTelefono.getText(),false);
+                    ControladorUsuario con = new ControladorUsuario();
+                    boolean result = con.RegistrarUsuario(nUsuario);
+                    if(result){
+                        mensaje = new MensajesModales(this, "El usuario ha sido registrado satisfactoriamente", "Ok",1);
+                        mensaje.ShowMessage();
+                    }else{
+                        mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok",1);
+                        mensaje.ShowMessage();
+                    }
+                }else{
+                    mensaje = new MensajesModales(this, "Los campos \"Contraseña\" y \"Confirmar contraseña\" deben ser iguales", "Ok",1);
+                    mensaje.ShowMessage();
+                }
+            }else{
+                mensaje = new MensajesModales(this, "El correo electrónico ingresado no tiene un formato válido, por favor inténtelo de nuevo", "Ok",1);
+                mensaje.ShowMessage();
+            }
+        }else{
+            mensaje = new MensajesModales(this, "Por favor complete todos los campos requeridos (*)", "Ok",1);
+            mensaje.ShowMessage();
+        }
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -406,12 +463,12 @@ public class frmRegistroExterno extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtApe;
+    private javax.swing.JPasswordField txtConContra;
+    private javax.swing.JPasswordField txtContra;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

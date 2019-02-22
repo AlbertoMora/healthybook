@@ -29,4 +29,11 @@ public class ControladorUsuario {
             throw new SQLException();
         }
     }
+    
+    public boolean RegistrarUsuario(ModeloUsuario usuario){
+        DBManager db = new DBManager();
+        String query = String.format("RegistrarUsuario '%s','%s','%s','%s','%s','%s',0", usuario.getNombre(),usuario.getApellidos(),usuario.getNombreUsuario(), usuario.getEmail(),
+                                      usuario.getContrasena(), usuario.getTelefono());
+        return db.CallProcedure(query);
+    }
 }
