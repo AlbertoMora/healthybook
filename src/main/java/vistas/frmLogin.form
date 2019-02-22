@@ -305,14 +305,14 @@
         <Component class="javax.swing.JLabel" name="lblUser">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Alberto Mora\Documents\NetBeansProjects\HealthyBook\lib\unknown\binary\res\man-user.png"/>
+              <Image iconType="1" name="https://i.ibb.co/2cz1RC7/man-user.png"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblUser2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\Alberto Mora\Documents\NetBeansProjects\HealthyBook\lib\unknown\binary\res\lock.png"/>
+              <Image iconType="1" name="https://i.ibb.co/YLjdx0g/lock.png"/>
             </Property>
           </Properties>
         </Component>

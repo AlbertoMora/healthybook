@@ -48,7 +48,7 @@ public class MensajesModales extends JDialog {
 
     public void ShowMessage() {
         setUndecorated(true);
-        
+
         JPanel topGeneralPane = new JPanel();
         JPanel botGeneralPane = new JPanel();
         topGeneralPane.setBackground(new Color(255, 255, 255));
@@ -68,7 +68,7 @@ public class MensajesModales extends JDialog {
                 button.setText(buttonMessage);
                 button.setBackground(new java.awt.Color(177, 255, 160));
                 button.setBorder(new LineBorder(new Color(226, 224, 224)));
-                button.setFont(new java.awt.Font("Nirmala UI", 1, 14)); 
+                button.setFont(new java.awt.Font("Nirmala UI", 1, 14));
                 button.setForeground(new java.awt.Color(102, 102, 102));
                 button.setContentAreaFilled(false);
                 button.setOpaque(true);
@@ -89,13 +89,13 @@ public class MensajesModales extends JDialog {
                 btnOK.addMouseListener(new styledButtonAction());
                 buttonPane.add(btnOK);
                 btnOK.addActionListener(new Aceptar());
-                
+
                 JButton btnCancel = new JButton();
                 btnCancel.setPreferredSize(new Dimension(80, 45));
                 btnCancel.setText("Cancelar");
                 btnCancel.setBackground(new java.awt.Color(252, 153, 178));
                 btnCancel.setBorder(new LineBorder(new Color(226, 224, 224)));
-                btnCancel.setFont(new java.awt.Font("Nirmala UI", 1, 14)); 
+                btnCancel.setFont(new java.awt.Font("Nirmala UI", 1, 14));
                 btnCancel.setForeground(new java.awt.Color(102, 102, 102));
                 btnCancel.setContentAreaFilled(false);
                 btnCancel.setOpaque(true);
@@ -109,12 +109,12 @@ public class MensajesModales extends JDialog {
         botGeneralPane.add(buttonPane);
         getContentPane().add(botGeneralPane, BorderLayout.PAGE_END);
         getRootPane().setBorder(new LineBorder(new Color(0, 0, 0)));
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModal(true);
         pack();
-        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - this.getWidth()/2;
-        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 -  this.getHeight();
-        setLocation((int)x, (int)y);
+        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - this.getWidth() / 2;
+        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight();
+        setLocation((int) x, (int) y);
         setVisible(true);
     }
 
@@ -153,12 +153,10 @@ public class MensajesModales extends JDialog {
         return rootPane;
     }
 
-
     class OkCancelButton implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
             result = 0;
-            JButton button = (JButton) e.getSource();
-            button.setBorder(new LineBorder(new Color(0, 0, 0)));
             setVisible(false);
             dispose();
         }
@@ -173,14 +171,17 @@ public class MensajesModales extends JDialog {
             dispose();
         }
     }
-    class styledButtonAction extends MouseAdapter{
+
+    class styledButtonAction extends MouseAdapter {
+
         @Override
         public void mousePressed(MouseEvent e) {
             JButton button = (JButton) e.getSource();
             button.setBorder(new LineBorder(new Color(0, 0, 0)));
         }
+
         @Override
-        public void mouseReleased(MouseEvent e){
+        public void mouseReleased(MouseEvent e) {
             JButton button = (JButton) e.getSource();
             button.setBorder(new LineBorder(new Color(226, 224, 224)));
         }

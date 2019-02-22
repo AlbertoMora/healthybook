@@ -158,9 +158,29 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        lblUser.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto Mora\\Documents\\NetBeansProjects\\HealthyBook\\lib\\unknown\\binary\\res\\man-user.png")); // NOI18N
+        lblUser.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.ibb.co/2cz1RC7/man-user.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
-        lblUser2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alberto Mora\\Documents\\NetBeansProjects\\HealthyBook\\lib\\unknown\\binary\\res\\lock.png")); // NOI18N
+        lblUser2.setIcon(new javax.swing.JLabel() {
+            public javax.swing.Icon getIcon() {
+                try {
+                    return new javax.swing.ImageIcon(
+                        new java.net.URL("https://i.ibb.co/YLjdx0g/lock.png")
+                    );
+                } catch (java.net.MalformedURLException e) {
+                }
+                return null;
+            }
+        }.getIcon());
 
         txtContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
