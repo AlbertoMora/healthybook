@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -74,8 +75,7 @@ public class MensajesModales extends JDialog {
     private void initComponents(String message, int opcion, String buttonMessage) {
         System.out.println("creating the window..");
         setUndecorated(true);
-        setSize(250, 120);
-        setLocationRelativeTo(null);
+        
         // Create a message
         JPanel topGeneralPane = new JPanel();
         JPanel botGeneralPane = new JPanel();
@@ -103,7 +103,7 @@ public class MensajesModales extends JDialog {
                 button.setForeground(new java.awt.Color(102, 102, 102));
                 button.setContentAreaFilled(false);
                 button.setOpaque(true);
-                button.addMouseListener(new cssButtonPressed());
+                button.addMouseListener(new styledButtonAction());
                 buttonPane.add(button);
                 // set action listener on the button
                 button.addActionListener(new OkCancelButton());
@@ -118,7 +118,7 @@ public class MensajesModales extends JDialog {
                 btnOK.setForeground(new java.awt.Color(102, 102, 102));
                 btnOK.setContentAreaFilled(false);
                 btnOK.setOpaque(true);
-                btnOK.addMouseListener(new cssButtonPressed());
+                btnOK.addMouseListener(new styledButtonAction());
                 buttonPane.add(btnOK);
                 // set action listener on the button
                 btnOK.addActionListener(new Aceptar());
@@ -132,7 +132,7 @@ public class MensajesModales extends JDialog {
                 btnCancel.setForeground(new java.awt.Color(102, 102, 102));
                 btnCancel.setContentAreaFilled(false);
                 btnCancel.setOpaque(true);
-                btnCancel.addMouseListener(new cssButtonPressed());
+                btnCancel.addMouseListener(new styledButtonAction());
                 buttonPane.add(btnCancel);
                 // set action listener on the button
                 btnCancel.addActionListener(new OkCancelButton());
@@ -143,9 +143,12 @@ public class MensajesModales extends JDialog {
         botGeneralPane.add(buttonPane);
         getContentPane().add(botGeneralPane, BorderLayout.PAGE_END);
         getRootPane().setBorder(new LineBorder(new Color(0, 0, 0)));
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
         setModal(true);
         pack();
+        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - this.getWidth()/2;
+        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 -  this.getHeight();
+        setLocation((int)x, (int)y);
         setVisible(true);
     }
     // override the createRootPane inherited by the JDialog, to create the rootPane.
@@ -194,7 +197,7 @@ public class MensajesModales extends JDialog {
             dispose();
         }
     }
-    class cssButtonPressed extends MouseAdapter{
+    class styledButtonAction extends MouseAdapter{
         @Override
         public void mousePressed(MouseEvent e) {
             JButton button = (JButton) e.getSource();

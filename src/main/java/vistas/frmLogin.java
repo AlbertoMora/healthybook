@@ -7,13 +7,13 @@ package vistas;
 
 import controladores.ControladorUsuario;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Insets;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
-
 
 /**
  *
@@ -28,6 +28,7 @@ public class frmLogin extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,6 +93,11 @@ public class frmLogin extends javax.swing.JFrame {
                 btnMinimizarMouseReleased(evt);
             }
         });
+        btnMinimizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMinimizarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel1.setText("Inicio de Sesión");
@@ -144,6 +150,11 @@ public class frmLogin extends javax.swing.JFrame {
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 btnRegistroMouseReleased(evt);
+            }
+        });
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
             }
         });
 
@@ -242,51 +253,51 @@ public class frmLogin extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         // TODO add your handling code here:
-        MensajesModales mensaje = new MensajesModales(this, "¿Está seguro que desea salir del sistema?","Continuar", 2);
+        MensajesModales mensaje = new MensajesModales(this, "¿Está seguro que desea salir del sistema?", "Continuar", 2);
         mensaje.ShowMessage();
-        if(mensaje.getResult() == 1){
+        if (mensaje.getResult() == 1) {
             this.dispose();
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnLoginMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMousePressed
         // TODO add your handling code here:
-        btnLogin.setBorder(new LineBorder(new Color(0,0,0)));
+        btnLogin.setBorder(new LineBorder(new Color(0, 0, 0)));
     }//GEN-LAST:event_btnLoginMousePressed
 
     private void btnLoginMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseReleased
         // TODO add your handling code here:
-        btnLogin.setBorder(new LineBorder(new Color(226,224,224)));
+        btnLogin.setBorder(new LineBorder(new Color(226, 224, 224)));
     }//GEN-LAST:event_btnLoginMouseReleased
 
     private void btnCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMousePressed
         // TODO add your handling code here:
-        btnCerrar.setBorder(new LineBorder(new Color(0,0,0)));
+        btnCerrar.setBorder(new LineBorder(new Color(0, 0, 0)));
     }//GEN-LAST:event_btnCerrarMousePressed
 
     private void btnCerrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseReleased
         // TODO add your handling code here:
-        btnCerrar.setBorder(new LineBorder(new Color(226,224,224)));
+        btnCerrar.setBorder(new LineBorder(new Color(226, 224, 224)));
     }//GEN-LAST:event_btnCerrarMouseReleased
 
     private void btnMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMousePressed
         // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(0,0,0)));
+        btnMinimizar.setBorder(new LineBorder(new Color(0, 0, 0)));
     }//GEN-LAST:event_btnMinimizarMousePressed
 
     private void btnMinimizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseReleased
         // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(226,224,224)));
+        btnMinimizar.setBorder(new LineBorder(new Color(226, 224, 224)));
     }//GEN-LAST:event_btnMinimizarMouseReleased
 
     private void btnRegistroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMousePressed
         // TODO add your handling code here:
-        btnRegistro.setBorder(new LineBorder(new Color(0,0,0)));
+        btnRegistro.setBorder(new LineBorder(new Color(0, 0, 0)));
     }//GEN-LAST:event_btnRegistroMousePressed
 
     private void btnRegistroMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistroMouseReleased
         // TODO add your handling code here:
-        btnRegistro.setBorder(new LineBorder(new Color(177,255,160)));
+        btnRegistro.setBorder(new LineBorder(new Color(177, 255, 160)));
     }//GEN-LAST:event_btnRegistroMouseReleased
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -294,16 +305,33 @@ public class frmLogin extends javax.swing.JFrame {
         ModeloUsuario datos;
         ControladorUsuario controlador = new ControladorUsuario();
         MensajesModales mensaje;
-        try{
-            datos = controlador.getLoginData(txtUsuario.getText(), txtContra.getText());
-            mensaje = new MensajesModales(this, "El usuario " + datos.getNombre() +" "+ datos.getApellidos() + " ha iniciado sesión correctamente", "Ok", 1);
+        if (!txtContra.getPassword().toString().isEmpty() && !txtUsuario.getText().isEmpty()) {
+            try {
+                datos = controlador.getLoginData(txtUsuario.getText(), txtContra.getText());
+                mensaje = new MensajesModales(this, "El usuario " + datos.getNombre() + " " + datos.getApellidos() + " ha iniciado sesión correctamente", "Ok", 1);
+                mensaje.ShowMessage();
+            } catch (SQLException e) {
+                mensaje = new MensajesModales(this, "Los datos de inicio de sesión son incorrectos", "Ok", 1);
+                mensaje.ShowMessage();
+                System.out.print(e);
+            }
+        } else {
+            mensaje = new MensajesModales(this, "Por favor complete todos los campos antes de realizar esta acción", "Ok", 1);
             mensaje.ShowMessage();
-        }catch(SQLException e){
-            mensaje = new MensajesModales(this, "Los datos de inicio de sesión son incorrectos", "Ok", 1);
-            mensaje.ShowMessage();
-            System.out.print(e);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        // TODO add your handling code here:
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        // TODO add your handling code here:
+        frmRegistroExterno reg = new frmRegistroExterno();
+        reg.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
     /**
      * @param args the command line arguments
