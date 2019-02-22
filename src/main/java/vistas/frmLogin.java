@@ -328,7 +328,7 @@ public class frmLogin extends javax.swing.JFrame {
         MensajesModales mensaje;
         if (!txtContra.getPassword().toString().isEmpty() && !txtUsuario.getText().isEmpty()) {
             try {
-                datos = controlador.getLoginData(txtUsuario.getText(), txtContra.getText());
+                datos = controlador.getLoginData(txtUsuario.getText(),new String(txtContra.getPassword()));
                 mensaje = new MensajesModales(this, "El usuario " + datos.getNombre() + " " + datos.getApellidos() + " ha iniciado sesión correctamente", "Ok", 1);
                 mensaje.ShowMessage();
             } catch (SQLException e) {
