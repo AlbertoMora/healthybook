@@ -86,7 +86,7 @@
                       <Component id="btnRegistrar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="btnCancelar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="69" max="32767" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,13 +153,13 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Datos del Usuario">
+                <TitledBorder justification="2" title="Registrar Usuario">
                   <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder>
                       <Color PropertyName="color" blue="e0" green="e0" red="e2" type="rgb"/>
                     </LineBorder>
                   </Border>
-                  <Font PropertyName="font" name="Nirmala UI Semilight" size="14" style="1"/>
+                  <Font PropertyName="font" name="Nirmala UI Semilight" size="28" style="1"/>
                   <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
                 </TitledBorder>
               </Border>
@@ -259,7 +259,7 @@
                           <Component id="txtConContra" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                           <Component id="txtContra" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="112" max="32767" attributes="0"/>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtTelefono" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
