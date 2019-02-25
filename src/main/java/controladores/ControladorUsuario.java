@@ -16,7 +16,7 @@ import libreriasExternas.DBManager;
  */
 public class ControladorUsuario {
 
-    public ModeloUsuario getLoginData(String user, String password) throws SQLException {
+    public ModeloUsuario obtenerDatosSesion(String user, String password) throws SQLException {
         ResultSet data;
         ModeloUsuario usuario;
         DBManager db = new DBManager();
@@ -32,20 +32,20 @@ public class ControladorUsuario {
         }
     }
 
-    public boolean RegistrarUsuario(ModeloUsuario usuario) {
+    public boolean registrarUsuario(ModeloUsuario usuario) {
         DBManager db = new DBManager();
         String query = String.format("RegistrarUsuario '%s','%s','%s','%s','%s','%s',0", usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(),
                 usuario.getContrasena(), usuario.getTelefono());
         return db.CallProcedure(query);
     }
 
-    public boolean EliminarUsuario(int id) {
+    public boolean eliminarUsuario(int id) {
         DBManager db = new DBManager();
         String query = String.format("EliminarUsuario %s", id);
         return db.CallProcedure(query);
     }
 
-    public boolean ActualizarUsuario(ModeloUsuario usuario) {
+    public boolean actualizarUsuario(ModeloUsuario usuario) {
         DBManager db = new DBManager();
         String query = String.format("RegistrarUsuario %s,'%s','%s','%s','%s','%s','%s',0", usuario.getId(), usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(),
                 usuario.getContrasena(), usuario.getTelefono());

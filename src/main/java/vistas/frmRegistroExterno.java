@@ -104,7 +104,7 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)), "Registrar Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Nirmala UI Semilight", 1, 28), new java.awt.Color(51, 51, 51))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)), "Registrar Usuario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Nirmala UI Semilight", 1, 28), new java.awt.Color(51, 51, 51))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel1.setText("Nombre*");
@@ -392,7 +392,7 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                     ModeloUsuario nUsuario = new ModeloUsuario(txtNombre.getText(),txtApe.getText(),txtUsuario.getText(),txtEmail.getText(), new String(txtContra.getPassword()),
                                                                txtTelefono.getText(),false);
                     ControladorUsuario con = new ControladorUsuario();
-                    boolean result = con.RegistrarUsuario(nUsuario);
+                    boolean result = con.registrarUsuario(nUsuario);
                     if(result){
                         mensaje = new MensajesModales(this, "El usuario ha sido registrado satisfactoriamente", "Ok",1);
                         mensaje.ShowMessage();
