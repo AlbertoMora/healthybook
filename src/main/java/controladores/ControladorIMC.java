@@ -5,10 +5,40 @@
  */
 package controladores;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import libreriasExternas.DBManager;
+import modelos.ModeloIMC;
+
 /**
  *
  * @author Alberto Mora
  */
 public class ControladorIMC {
-    
+
+    public boolean RegistrarIMC(ModeloIMC imc) {
+        DBManager db = new DBManager();
+        String query = String.format("RegistrarIMC %s,%s,%s,%s, '%s','%s'", imc.getIdUsuario(), imc.getIdDietaRec(), imc.getIdRutina(), imc.getIMC(), imc.getCategoria(), imc.getFecha());
+        return db.CallProcedure(query);
+    }
+
+    public ArrayList<ModeloIMC> obtenerHistorialIMC(int idUsuario) throws SQLException {
+        ArrayList<ModeloIMC> historial = new ArrayList<>();
+        DBManager db = new DBManager();
+        ResultSet datos = db.CallProcedureWResults(String.format("ObtenerListaIMC %s", idUsuario));
+        while (datos.next()) {
+            ModeloIMC nRow = new ModeloIMC();
+            nRow.setId(datos.getInt("id"));
+            nRow.setIdDietaRec(datos.getInt("idDietaRec"));
+            nRow.setIdRutina(datos.getInt("idRutina"));
+            nRow.setIMC(datos.getDouble("IMC"));
+            nRow.setCategoria(datos.getString("categoria"));
+            nRow.setFecha(datos.getString("fecha"));
+            nRow.setNombreDietaRec("nombreDieta");
+            nRow.setNombreRutinaRec("nombreRutina");
+            historial.add(nRow);
+        }
+        return historial;
+    }
 }

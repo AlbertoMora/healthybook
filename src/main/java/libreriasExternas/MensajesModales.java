@@ -108,7 +108,7 @@ public class MensajesModales extends JDialog {
         getContentPane().add(topGeneralPane);
         botGeneralPane.add(buttonPane);
         getContentPane().add(botGeneralPane, BorderLayout.PAGE_END);
-        getRootPane().setBorder(new LineBorder(new Color(0, 0, 0)));
+        getRootPane().setBorder(new LineBorder(new Color(226, 224, 224)));
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setModal(true);
         pack();
