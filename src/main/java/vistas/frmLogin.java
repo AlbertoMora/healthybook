@@ -328,9 +328,10 @@ public class frmLogin extends javax.swing.JFrame {
         MensajesModales mensaje;
         if (!txtContra.getPassword().toString().isEmpty() && !txtUsuario.getText().isEmpty()) {
             try {
-                datos = controlador.obtenerDatosSesion(txtUsuario.getText(),new String(txtContra.getPassword()));
-                mensaje = new MensajesModales(this, "El usuario " + datos.getNombre() + " " + datos.getApellidos() + " ha iniciado sesión correctamente", "Ok", 1);
-                mensaje.ShowMessage();
+                datos = controlador.obtenerDatosSesion(txtUsuario.getText().replace("'", "''"),new String(txtContra.getPassword()).replace("'", "''"));
+                frmGestionIMC main = new frmGestionIMC(datos);
+                main.setVisible(true);
+                this.dispose();
             } catch (SQLException e) {
                 mensaje = new MensajesModales(this, "Los datos de inicio de sesión son incorrectos", "Ok", 1);
                 mensaje.ShowMessage();
