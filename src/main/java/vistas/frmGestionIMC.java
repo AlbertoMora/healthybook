@@ -9,6 +9,7 @@ import CustomDependencies.ComponentMover;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
@@ -55,16 +56,16 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtAltura = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPeso = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        btnRegistrar = new javax.swing.JButton();
+        lblIMC = new javax.swing.JLabel();
+        lblClasificacion = new javax.swing.JLabel();
+        btnCalcular = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
@@ -232,8 +233,8 @@ public class frmGestionIMC extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel1.setText("Altura");
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtAltura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtAltura.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel2.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel2.setText("cm");
@@ -241,8 +242,8 @@ public class frmGestionIMC extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel3.setText("Peso");
 
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
+        txtPeso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPeso.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel4.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         jLabel4.setText("kg");
@@ -253,30 +254,30 @@ public class frmGestionIMC extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Nirmala UI", 1, 18)); // NOI18N
         jLabel6.setText("Clasificación: ");
 
-        jLabel7.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
-        jLabel7.setText("N/A");
+        lblIMC.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
+        lblIMC.setText("N/A");
 
-        jLabel8.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
-        jLabel8.setText("N/A");
+        lblClasificacion.setFont(new java.awt.Font("Nirmala UI", 0, 14)); // NOI18N
+        lblClasificacion.setText("N/A");
 
-        btnRegistrar.setBackground(new java.awt.Color(177, 255, 160));
-        btnRegistrar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(102, 102, 102));
-        btnRegistrar.setText("Calcular");
-        btnRegistrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
-        btnRegistrar.setContentAreaFilled(false);
-        btnRegistrar.setOpaque(true);
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCalcular.setBackground(new java.awt.Color(177, 255, 160));
+        btnCalcular.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnCalcular.setForeground(new java.awt.Color(102, 102, 102));
+        btnCalcular.setText("Calcular");
+        btnCalcular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
+        btnCalcular.setContentAreaFilled(false);
+        btnCalcular.setOpaque(true);
+        btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnRegistrarMousePressed(evt);
+                btnCalcularMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseReleased(evt);
+                btnCalcularMouseReleased(evt);
             }
         });
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnCalcularActionPerformed(evt);
             }
         });
 
@@ -353,33 +354,31 @@ public class frmGestionIMC extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(298, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jLabel2)
-                            .addGap(329, 329, 329))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jLabel4))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(8, 8, 8)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGap(10, 10, 10)
-                                    .addComponent(jLabel6)
-                                    .addGap(1, 1, 1)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(255, 255, 255)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(8, 8, 8)
+                                .addComponent(lblIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel6)
+                                .addGap(1, 1, 1)
+                                .addComponent(lblClasificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(255, 255, 255))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(287, 287, 287))
@@ -403,7 +402,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -417,21 +416,20 @@ public class frmGestionIMC extends javax.swing.JFrame {
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(75, 75, 75)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(lblIMC)
                                 .addGap(2, 2, 2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel8))
+                            .addComponent(lblClasificacion))
                         .addGap(58, 58, 58)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(87, Short.MAX_VALUE))))
         );
@@ -515,20 +513,50 @@ public class frmGestionIMC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void btnRegistrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMousePressed
+    private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
         // TODO add your handling code here:
-        btnRegistrar.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnRegistrarMousePressed
+        btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnCalcularMousePressed
 
-    private void btnRegistrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseReleased
+    private void btnCalcularMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseReleased
         // TODO add your handling code here:
-        btnRegistrar.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnRegistrarMouseReleased
+        btnCalcular.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnCalcularMouseReleased
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
+        double altura= Double.parseDouble(txtAltura.getText())/100;
+        double peso= Double.parseDouble(txtPeso.getText());
+        double alturacuadrada=(Math.pow(altura, 2));
+        double imc= peso/alturacuadrada;
+        
+        if(imc<16.00){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Delgadez severa");
+       }else if(imc>=16.00 && imc<=16.99){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Delgadez moderada");
+       }else if(imc>=17.00 && imc<=18.49){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Delgadez aceptable");
+       }else if(imc>=18.50 && imc<=24.99){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Peso normal");
+       }else if(imc>=25.00 && imc<=29.99){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Sobrepeso");
+       }else if(imc>=30.00 && imc<=34.99){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Obesidad tipo 1");
+       }else if(imc>=35.00 && imc<=40.00){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Obesidad tipo 2");
+       }else if(imc>40.00){
+           lblIMC.setText(Double.toString(imc));
+           lblClasificacion.setText("Obesidad tipo 3");
+       }
 
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
         // TODO add your handling code here:
@@ -602,7 +630,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
         ComponentMover cm = new ComponentMover();
         cm.registerComponent(this); 
     }
-
     /**
      * @param args the command line arguments
      */
@@ -639,13 +666,13 @@ public class frmGestionIMC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalcular;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnHistorico;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -654,14 +681,14 @@ public class frmGestionIMC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblClasificacion;
+    private javax.swing.JLabel lblIMC;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JTextField txtAltura;
+    private javax.swing.JTextField txtPeso;
     // End of variables declaration//GEN-END:variables
 }
