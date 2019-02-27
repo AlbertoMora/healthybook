@@ -13,8 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -44,6 +47,9 @@ public class MensajesModales extends JDialog {
         this.buttonMessage = buttonMessage;
         this.opcion = opcion;
 
+    }
+
+    public MensajesModales() {
     }
 
     public void ShowMessage() {
@@ -102,6 +108,7 @@ public class MensajesModales extends JDialog {
                 btnCancel.addMouseListener(new styledButtonAction());
                 buttonPane.add(btnCancel);
                 btnCancel.addActionListener(new OkCancelButton());
+                break;
 
         }
         topGeneralPane.add(messagePane);
@@ -132,6 +139,35 @@ public class MensajesModales extends JDialog {
 
     public void setOpcion(int opcion) {
         this.opcion = opcion;
+    }
+
+    public void loading() {
+        setUndecorated(true);
+        JPanel imagePanel = new JPanel();
+        imagePanel.setBackground(new Color(0,0,0,255));
+        try{
+            URL uriImage = new URL("https://i.ibb.co/ctYCc3L/loading.gif");
+            Icon icon = new ImageIcon(uriImage);
+            JLabel lblLoad = new JLabel(icon);
+            lblLoad.setSize(60, 60);
+            imagePanel.add(lblLoad);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        JPanel messagePane = new JPanel();
+        messagePane.setBackground(new Color(255, 255, 255));
+        JLabel text = new JLabel("Prueba Modal");
+        text.setFont(new java.awt.Font("Nirmala UI", 1, 14));
+        messagePane.add(text);
+        getContentPane().add(imagePanel);
+        getContentPane().add(messagePane);
+        getRootPane().setBackground(new Color(0,0,0,255));
+        System.out.println("Lanzado url: https://i.ibb.co/ctYCc3L/loading.gif");
+        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - this.getWidth() / 2;
+        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight() / 2;
+        setLocation((int) x, (int) y);
+        pack();
+        setVisible(true);
     }
 
     @Override

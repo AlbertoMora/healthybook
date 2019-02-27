@@ -14,8 +14,6 @@ import java.awt.Insets;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
-import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloIMC;
@@ -566,6 +564,9 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
         // TODO add your handling code here:
+        frmHistorialIMC historial = new frmHistorialIMC(sesion);
+        historial.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHistoricoActionPerformed
 
     private void btnEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMousePressed

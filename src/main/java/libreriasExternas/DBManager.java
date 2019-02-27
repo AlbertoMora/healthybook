@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package libreriasExternas   ;
+package libreriasExternas;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -23,7 +23,6 @@ public class DBManager {
     String password = "Lq4druZ4A~?7";
     String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;"
             + "hostNameInCertificate=*.database.windows.net;loginTimeout=30;trustServerCertificate=true;", Hostname, dbName, user, password);
-
     Connection connection = null;
 
     public boolean CallProcedure(String query) {
@@ -36,7 +35,6 @@ public class DBManager {
             } else {
                 return false;
             }
-            
         } catch (SQLException e) {
             System.out.println(e.toString());
             return false;
@@ -63,9 +61,4 @@ public class DBManager {
             System.out.println(e);
         }
     }
-
-    ResultSet CallProcedureWResults(String obtenerDatosCuenta_s, int numCuenta) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

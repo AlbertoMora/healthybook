@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
