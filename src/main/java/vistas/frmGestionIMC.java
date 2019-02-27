@@ -6,12 +6,20 @@
 package vistas;
 
 import CustomDependencies.ComponentMover;
+import controladores.ControladorIMC;
+import controladores.ControladorRango;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
+import modelos.ModeloIMC;
+import modelos.ModeloRango;
 import modelos.ModeloUsuario;
 
 /**
@@ -66,7 +74,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         lblIMC = new javax.swing.JLabel();
         lblClasificacion = new javax.swing.JLabel();
         btnCalcular = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         btnHistorico = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -281,24 +289,24 @@ public class frmGestionIMC extends javax.swing.JFrame {
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(252, 153, 178));
-        btnCancelar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(102, 102, 102));
-        btnCancelar.setText("Limpiar");
-        btnCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
-        btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setOpaque(true);
-        btnCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLimpiar.setBackground(new java.awt.Color(252, 153, 178));
+        btnLimpiar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(102, 102, 102));
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
+        btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setOpaque(true);
+        btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnCancelarMousePressed(evt);
+                btnLimpiarMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnCancelarMouseReleased(evt);
+                btnLimpiarMouseReleased(evt);
             }
         });
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnLimpiarActionPerformed(evt);
             }
         });
 
@@ -380,7 +388,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(287, 287, 287))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +438,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                         .addGap(58, 58, 58)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(87, Short.MAX_VALUE))))
         );
 
@@ -525,53 +533,26 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
-        double altura= Double.parseDouble(txtAltura.getText())/100;
-        double peso= Double.parseDouble(txtPeso.getText());
-        double alturacuadrada=(Math.pow(altura, 2));
-        double imc= peso/alturacuadrada;
-        
-        if(imc<16.00){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Delgadez severa");
-       }else if(imc>=16.00 && imc<=16.99){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Delgadez moderada");
-       }else if(imc>=17.00 && imc<=18.49){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Delgadez aceptable");
-       }else if(imc>=18.50 && imc<=24.99){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Peso normal");
-       }else if(imc>=25.00 && imc<=29.99){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Sobrepeso");
-       }else if(imc>=30.00 && imc<=34.99){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Obesidad tipo 1");
-       }else if(imc>=35.00 && imc<=40.00){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Obesidad tipo 2");
-       }else if(imc>40.00){
-           lblIMC.setText(Double.toString(imc));
-           lblClasificacion.setText("Obesidad tipo 3");
-       }
-
+        double altura = Double.parseDouble(txtAltura.getText()) / 100;
+        double peso = Double.parseDouble(txtPeso.getText());
+        double imc = peso / (Math.pow(altura, 2));
+        registrarIMC(imc);
     }//GEN-LAST:event_btnCalcularActionPerformed
 
-    private void btnCancelarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMousePressed
+    private void btnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMousePressed
         // TODO add your handling code here:
-        btnCancelar.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnCancelarMousePressed
+        btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnLimpiarMousePressed
 
-    private void btnCancelarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelarMouseReleased
+    private void btnLimpiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseReleased
         // TODO add your handling code here:
-        btnCancelar.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnCancelarMouseReleased
+        btnLimpiar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnLimpiarMouseReleased
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMousePressed
         // TODO add your handling code here:
@@ -628,8 +609,36 @@ public class frmGestionIMC extends javax.swing.JFrame {
     private void iniCompPropios() {
         lblUsuario.setText(sesion.getNombre() + " " + sesion.getApellidos());
         ComponentMover cm = new ComponentMover();
-        cm.registerComponent(this); 
+        cm.registerComponent(this);
     }
+
+    private void registrarIMC(double imc) {
+        MensajesModales mensaje;
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy, HH:mm:SS");
+            Calendar hoy = Calendar.getInstance();
+            String fechaHoy = format.format(hoy.getTime());
+            ControladorIMC con = new ControladorIMC();
+            ControladorRango conR = new ControladorRango();
+            ModeloRango rango = conR.obtenerIdRango(imc);
+            ModeloIMC imcM = new ModeloIMC(sesion.getId(), rango.getId(), imc, fechaHoy);
+            boolean resultado = con.registrarIMC(imcM);
+            if (resultado) {
+                lblIMC.setText(String.format("%.2f", imc));
+                lblClasificacion.setText(rango.getCategoria());
+                mensaje = new MensajesModales(this, "El IMC ha sido registrado correctamente en el historial", "Ok", 1);
+                mensaje.ShowMessage();
+            } else {
+                mensaje = new MensajesModales(this, "Los datos ingresados no son válidos, por favor inténtelo de nuevo", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = new MensajesModales(this, "No existe un rango válido para este IMC", "Ok", 1);
+            mensaje.ShowMessage();
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -667,10 +676,10 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalcular;
-    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnHistorico;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
     private javax.swing.JLabel jLabel1;

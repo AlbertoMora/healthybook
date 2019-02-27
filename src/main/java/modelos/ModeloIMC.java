@@ -12,8 +12,7 @@ package modelos;
 public class ModeloIMC {
     int id;
     int idUsuario;
-    int idDietaRec;
-    int idRutina;
+    int idRango;
     double IMC;
     String categoria;
     String fecha;
@@ -23,11 +22,17 @@ public class ModeloIMC {
     public ModeloIMC() {
     }
 
-    public ModeloIMC(int id, int idUsuario, int idDietaRec, int idRutina, double IMC, String fecha, String nombreRutinaRec, String nombreDietaRec, String categoria) {
+    public ModeloIMC(int idUsuario, int idRango, double IMC, String fecha) {
+        this.idUsuario = idUsuario;
+        this.idRango = idRango;
+        this.IMC = IMC;
+        this.fecha = fecha;
+    }
+    
+    public ModeloIMC(int id, int idUsuario, int idRango, double IMC, String categoria, String fecha, String nombreRutinaRec, String nombreDietaRec) {
         this.id = id;
         this.idUsuario = idUsuario;
-        this.idDietaRec = idDietaRec;
-        this.idRutina = idRutina;
+        this.idRango = idRango;
         this.IMC = IMC;
         this.categoria = categoria;
         this.fecha = fecha;
@@ -35,15 +40,6 @@ public class ModeloIMC {
         this.nombreDietaRec = nombreDietaRec;
     }
     
-    public ModeloIMC(int id, int idUsuario, int idDietaRec, int idRutina, double IMC, String fecha, String categoria) {
-        this.id = id;
-        this.idUsuario = idUsuario;
-        this.idDietaRec = idDietaRec;
-        this.idRutina = idRutina;
-        this.IMC = IMC;
-        this.categoria = categoria;
-        this.fecha = fecha;
-    }
 
     public int getId() {
         return id;
@@ -61,20 +57,12 @@ public class ModeloIMC {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdDietaRec() {
-        return idDietaRec;
+    public int getIdRango() {
+        return idRango;
     }
 
-    public void setIdDietaRec(int idDietaRec) {
-        this.idDietaRec = idDietaRec;
-    }
-
-    public int getIdRutina() {
-        return idRutina;
-    }
-
-    public void setIdRutina(int idRutina) {
-        this.idRutina = idRutina;
+    public void setIdRango(int idRango) {
+        this.idRango = idRango;
     }
 
     public double getIMC() {

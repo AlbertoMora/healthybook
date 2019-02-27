@@ -19,7 +19,7 @@ public class ControladorIMC {
 
     public boolean registrarIMC(ModeloIMC imc) {
         DBManager db = new DBManager();
-        String query = String.format("RegistrarIMC %s,%s,%s,%s, '%s','%s'", imc.getIdUsuario(), imc.getIdDietaRec(), imc.getIdRutina(), imc.getIMC(), imc.getCategoria(), imc.getFecha());
+        String query = String.format("RegistrarIMC %s,%s,%s,'%s'", imc.getIdUsuario(), imc.getIdRango(), imc.getIMC(), imc.getFecha());
         return db.CallProcedure(query);
     }
 
@@ -30,8 +30,7 @@ public class ControladorIMC {
         while (datos.next()) {
             ModeloIMC nRow = new ModeloIMC();
             nRow.setId(datos.getInt("id"));
-            nRow.setIdDietaRec(datos.getInt("idDietaRec"));
-            nRow.setIdRutina(datos.getInt("idRutina"));
+            nRow.setIdRango(datos.getInt("idRango"));
             nRow.setIMC(datos.getDouble("IMC"));
             nRow.setCategoria(datos.getString("categoria"));
             nRow.setFecha(datos.getString("fecha"));
@@ -44,7 +43,7 @@ public class ControladorIMC {
 
     public boolean actualizarIMC(ModeloIMC imc) {
         DBManager db = new DBManager();
-        String query = String.format("ActualizarIMC %s,%s,%s,%s,%s, '%s','%s'", imc.getId(), imc.getIdUsuario(), imc.getIdDietaRec(), imc.getIdRutina(), imc.getIMC(), imc.getCategoria(), imc.getFecha());
+        String query = String.format("ActualizarIMC %s,%s,%s,%s,'%s'", imc.getId(), imc.getIdUsuario(), imc.getIdRango(), imc.getIMC(), imc.getFecha());
         return db.CallProcedure(query);
     }
 

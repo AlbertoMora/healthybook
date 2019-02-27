@@ -323,7 +323,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnCalcular" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" pref="136" max="-2" attributes="0"/>
+                              <Component id="btnLimpiar" min="-2" pref="136" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -387,7 +387,7 @@
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="btnCalcular" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="btnCancelar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="btnLimpiar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="87" max="32767" attributes="0"/>
                           </Group>
@@ -515,7 +515,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCancelar">
+            <Component class="javax.swing.JButton" name="btnLimpiar">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b2" green="99" red="fc" type="rgb"/>
@@ -538,9 +538,9 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarMousePressed"/>
-                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCancelarMouseReleased"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLimpiarMousePressed"/>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnLimpiarMouseReleased"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimpiarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnHistorico">
