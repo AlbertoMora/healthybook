@@ -142,31 +142,25 @@ public class MensajesModales extends JDialog {
     }
 
     public void loading() {
-        setUndecorated(true);
-        JPanel imagePanel = new JPanel();
-        imagePanel.setBackground(new Color(0,0,0,255));
+        JLabel lblLoad;
         try{
-            URL uriImage = new URL("https://i.ibb.co/ctYCc3L/loading.gif");
-            Icon icon = new ImageIcon(uriImage);
-            JLabel lblLoad = new JLabel(icon);
-            lblLoad.setSize(60, 60);
-            imagePanel.add(lblLoad);
+            
+            Icon icon = new ImageIcon(System.getProperty("user.dir") + "/resources/loading.gif");
+            lblLoad = new JLabel(icon);
+            lblLoad.setOpaque(false);
         }catch(Exception e){
             System.out.println(e);
+            lblLoad = new JLabel();
         }
-        JPanel messagePane = new JPanel();
-        messagePane.setBackground(new Color(255, 255, 255));
-        JLabel text = new JLabel("Prueba Modal");
-        text.setFont(new java.awt.Font("Nirmala UI", 1, 14));
-        messagePane.add(text);
-        getContentPane().add(imagePanel);
-        getContentPane().add(messagePane);
-        getRootPane().setBackground(new Color(0,0,0,255));
-        System.out.println("Lanzado url: https://i.ibb.co/ctYCc3L/loading.gif");
-        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - this.getWidth() / 2;
-        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight() / 2;
-        setLocation((int) x, (int) y);
+        setUndecorated(true);
+        getContentPane().add(lblLoad);
+        getRootPane().setOpaque(false);
+        setBackground(new Color(0,0,0,0));
+        setModal(true);
         pack();
+        double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - this.getWidth() / 2;
+        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight();
+        setLocation((int) x, (int) y);
         setVisible(true);
     }
 

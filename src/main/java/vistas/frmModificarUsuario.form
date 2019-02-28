@@ -296,9 +296,9 @@
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtConContra" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                                  <Component id="txtNContra" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                                  <Component id="txtNContra" min="-2" pref="38" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -415,6 +415,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtTelefono">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder>
@@ -435,6 +436,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtConContra">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder>
@@ -447,6 +449,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtNContra">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder>
@@ -474,6 +477,7 @@
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtAContra">
               <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
                     <EtchetBorder>

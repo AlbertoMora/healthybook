@@ -8,12 +8,14 @@ package vistas;
 import CustomDependencies.ComponentMover;
 import controladores.ControladorIMC;
 import controladores.ControladorRango;
+import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloIMC;
@@ -25,7 +27,7 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmGestionIMC extends javax.swing.JFrame {
-
+    MensajesModales cargaAsync = new MensajesModales();
     ModeloUsuario sesion;
 
     /**
@@ -619,11 +621,13 @@ public class frmGestionIMC extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy, HH:mm:SS");
             Calendar hoy = Calendar.getInstance();
             String fechaHoy = format.format(hoy.getTime());
-            ControladorIMC con = new ControladorIMC();
             ControladorRango conR = new ControladorRango();
             ModeloRango rango = conR.obtenerIdRango(imc);
-            ModeloIMC imcM = new ModeloIMC(sesion.getId(), rango.getId(), imc, fechaHoy);
-            boolean resultado = con.registrarIMC(imcM);
+            AsyncTask consulta;
+            
+            (consulta = new AsyncTask(rango.getId(),fechaHoy,imc)).execute();
+            cargaAsync.loading();
+            boolean resultado = consulta.get();
             if (resultado) {
                 lblIMC.setText(String.format("%.2f", imc));
                 lblClasificacion.setText(rango.getCategoria());
@@ -633,9 +637,32 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 mensaje = new MensajesModales(this, "Los datos ingresados no son válidos, por favor inténtelo de nuevo", "Ok", 1);
                 mensaje.ShowMessage();
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             mensaje = new MensajesModales(this, "No existe un rango válido para este IMC", "Ok", 1);
             mensaje.ShowMessage();
+        }
+
+    }
+    private class AsyncTask extends SwingWorker<Boolean, String> {
+        String fecha;
+        int rango;
+        double imc;
+
+        
+        public AsyncTask(int rango, String fecha, double imc){
+            this.fecha = fecha;
+            this.rango = rango;
+            this.imc = imc;
+        }        
+        protected Boolean doInBackground() throws Exception {
+            ControladorIMC con = new ControladorIMC();
+            ModeloIMC imcM = new ModeloIMC(sesion.getId(), rango, imc, fecha);
+            return con.registrarIMC(imcM);
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
         }
 
     }

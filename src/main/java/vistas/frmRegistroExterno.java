@@ -10,6 +10,7 @@ import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
@@ -19,7 +20,7 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmRegistroExterno extends javax.swing.JFrame {
-
+    MensajesModales cargaAsync = new MensajesModales();
     /**
      * Creates new form frmRegistroExterno
      */
@@ -426,8 +427,11 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                 if (new String(txtContra.getPassword()).equals(new String(txtConContra.getPassword()))) {
                     ModeloUsuario nUsuario = new ModeloUsuario(txtNombre.getText().replace("'", "''"), txtApe.getText().replace("'", "''"), txtUsuario.getText().replace("'", "''"),
                             txtEmail.getText().replace("'", "''"), new String(txtContra.getPassword()).replace("'", "''"), txtTelefono.getText().replace("'", "''"), false);
-                    ControladorUsuario con = new ControladorUsuario();
-                    boolean result = con.registrarUsuario(nUsuario);
+                    try{
+                    AsyncTask consulta;
+                    (consulta=new AsyncTask(nUsuario)).execute();
+                    cargaAsync.loading();
+                    boolean result = consulta.get();
                     if (result) {
                         mensaje = new MensajesModales(this, "El usuario ha sido registrado satisfactoriamente", "Ok", 1);
                         mensaje.ShowMessage();
@@ -436,6 +440,10 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                         this.dispose();
                     } else {
                         mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok", 1);
+                        mensaje.ShowMessage();
+                    }
+                    }catch(Exception e){
+                        mensaje = new MensajesModales(this, "Ha ocurrido un error inesperado, por favor inténtelo de nuevo", "Ok", 1);
                         mensaje.ShowMessage();
                     }
                 } else {
@@ -451,7 +459,26 @@ public class frmRegistroExterno extends javax.swing.JFrame {
             mensaje.ShowMessage();
         }
     }//GEN-LAST:event_btnRegistrarActionPerformed
+    private class AsyncTask extends SwingWorker<Boolean, String> {
 
+        ModeloUsuario model;
+
+        public AsyncTask(ModeloUsuario model) {
+            this.model = model;
+        }
+
+        @Override
+        protected Boolean doInBackground() throws Exception {
+            ControladorUsuario con = new ControladorUsuario();
+            return con.registrarUsuario(model);
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+
+    }
     /**
      * @param args the command line arguments
      */

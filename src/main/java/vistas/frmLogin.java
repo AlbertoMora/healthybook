@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.sql.SQLException;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
@@ -19,7 +20,7 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmLogin extends javax.swing.JFrame {
-
+    MensajesModales cargaAsync = new MensajesModales();
     /**
      * Creates new form frmLogin
      */
@@ -325,13 +326,16 @@ public class frmLogin extends javax.swing.JFrame {
         ModeloUsuario datos;
         ControladorUsuario controlador = new ControladorUsuario();
         MensajesModales mensaje;
+        AsyncTask consulta;
         if (!txtContra.getPassword().toString().isEmpty() && !txtUsuario.getText().isEmpty()) {
             try {
-                datos = controlador.obtenerDatosSesion(txtUsuario.getText().replace("'", "''"),new String(txtContra.getPassword()).replace("'", "''"));
+                (consulta = new AsyncTask()).execute();
+                cargaAsync.loading();
+                datos = (ModeloUsuario)consulta.get();
                 frmGestionIMC main = new frmGestionIMC(datos);
                 main.setVisible(true);
                 this.dispose();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 mensaje = new MensajesModales(this, "Los datos de inicio de sesión son incorrectos", "Ok", 1);
                 mensaje.ShowMessage();
                 System.out.print(e);
@@ -353,7 +357,20 @@ public class frmLogin extends javax.swing.JFrame {
         reg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistroActionPerformed
+    private class AsyncTask extends SwingWorker<Object, String> {
 
+        @Override
+        protected Object doInBackground() throws Exception {
+            ControladorUsuario con = new ControladorUsuario();
+            return con.obtenerDatosSesion(txtUsuario.getText().replace("'", "''"),new String(txtContra.getPassword()).replace("'", "''"));
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+
+    }
     /**
      * @param args the command line arguments
      */

@@ -10,6 +10,7 @@ import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
@@ -21,6 +22,7 @@ import modelos.ModeloUsuario;
 public class frmModificarUsuario extends javax.swing.JFrame {
 
     ModeloUsuario sesion;
+    MensajesModales cargaAsync = new MensajesModales(this,"","Ok",1);
 
     /**
      * Creates new form frmModificarUsuario
@@ -155,13 +157,16 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel6.setText("Confirmar Contraseña");
 
+        txtTelefono.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTelefono.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(177, 255, 160), new java.awt.Color(226, 224, 224)));
 
         jLabel7.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
         jLabel7.setText("Telefono");
 
+        txtConContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtConContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
 
+        txtNContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
@@ -179,6 +184,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
             }
         }.getIcon());
 
+        txtAContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtAContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
 
         jLabel10.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 12)); // NOI18N
@@ -281,7 +287,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtConContra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNContra, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -484,8 +490,8 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         MensajesModales mensaje = new MensajesModales(this, "Los datos no guardados se perderán, ¿está seguro que desea interrumpir el proceso de registro?", "Ok", 2);
         mensaje.ShowMessage();
         if (mensaje.getResult() == 1) {
-            frmLogin login = new frmLogin();
-            login.setVisible(true);
+            frmGestionIMC back = new frmGestionIMC(sesion);
+            back.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
@@ -496,19 +502,29 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         sesion.setNombreUsuario(txtUsuario.getText().replace("'", "'"));
         sesion.setContrasena(nContra);
         sesion.setTelefono(txtTelefono.getText().replace("'", "'"));
-        ControladorUsuario con = new ControladorUsuario();
         MensajesModales mensaje;
-        boolean result = con.actualizarUsuario(sesion);
-        if (result) {
-            mensaje = new MensajesModales(this, "El usuario ha sido actualizado satisfactoriamente", "Ok", 1);
+        AsyncTask consulta;
+        boolean result = false;
+        try {
+            (consulta = new AsyncTask(sesion)).execute();
+            cargaAsync.loading();
+            result = consulta.get();
+            if (result) {
+                mensaje = new MensajesModales(this, "El usuario ha sido actualizado satisfactoriamente", "Ok", 1);
+                mensaje.ShowMessage();
+                frmGestionIMC back = new frmGestionIMC(sesion);
+                back.setVisible(true);
+                this.dispose();
+            } else {
+                mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+        } catch (Exception e) {
+            mensaje = new MensajesModales(this, "Ha ocurrido un error inesperado en el proceso de actualización, por favor inténtelo de nuevo", "Ok", 1);
             mensaje.ShowMessage();
-            frmGestionIMC back = new frmGestionIMC(sesion);
-            back.setVisible(true);
-            this.dispose();
-        } else {
-            mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok", 1);
-            mensaje.ShowMessage();
+
         }
+
     }
 
     /**
@@ -546,6 +562,26 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         });
     }
 
+    private class AsyncTask extends SwingWorker<Boolean, String> {
+
+        ModeloUsuario model;
+
+        public AsyncTask(ModeloUsuario model) {
+            this.model = model;
+        }
+
+        @Override
+        protected Boolean doInBackground() throws Exception {
+            ControladorUsuario con = new ControladorUsuario();
+            return con.actualizarUsuario(model);
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnCancelar;
