@@ -20,7 +20,9 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmRegistroExterno extends javax.swing.JFrame {
+
     MensajesModales cargaAsync = new MensajesModales();
+
     /**
      * Creates new form frmRegistroExterno
      */
@@ -427,22 +429,22 @@ public class frmRegistroExterno extends javax.swing.JFrame {
                 if (new String(txtContra.getPassword()).equals(new String(txtConContra.getPassword()))) {
                     ModeloUsuario nUsuario = new ModeloUsuario(txtNombre.getText().replace("'", "''"), txtApe.getText().replace("'", "''"), txtUsuario.getText().replace("'", "''"),
                             txtEmail.getText().replace("'", "''"), new String(txtContra.getPassword()).replace("'", "''"), txtTelefono.getText().replace("'", "''"), false);
-                    try{
-                    AsyncTask consulta;
-                    (consulta=new AsyncTask(nUsuario)).execute();
-                    cargaAsync.loading();
-                    boolean result = consulta.get();
-                    if (result) {
-                        mensaje = new MensajesModales(this, "El usuario ha sido registrado satisfactoriamente", "Ok", 1);
-                        mensaje.ShowMessage();
-                        frmLogin login = new frmLogin();
-                        login.setVisible(true);
-                        this.dispose();
-                    } else {
-                        mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok", 1);
-                        mensaje.ShowMessage();
-                    }
-                    }catch(Exception e){
+                    try {
+                        AsyncTask consulta;
+                        (consulta = new AsyncTask(nUsuario)).execute();
+                        cargaAsync.loading();
+                        boolean result = consulta.get();
+                        if (result) {
+                            mensaje = new MensajesModales(this, "El usuario ha sido registrado satisfactoriamente", "Ok", 1);
+                            mensaje.ShowMessage();
+                            frmLogin login = new frmLogin();
+                            login.setVisible(true);
+                            this.dispose();
+                        } else {
+                            mensaje = new MensajesModales(this, "El usuario o email ya están siendo utilizados, por favor inténtelo de nuevo", "Ok", 1);
+                            mensaje.ShowMessage();
+                        }
+                    } catch (Exception e) {
                         mensaje = new MensajesModales(this, "Ha ocurrido un error inesperado, por favor inténtelo de nuevo", "Ok", 1);
                         mensaje.ShowMessage();
                     }
@@ -479,6 +481,7 @@ public class frmRegistroExterno extends javax.swing.JFrame {
         }
 
     }
+
     /**
      * @param args the command line arguments
      */
