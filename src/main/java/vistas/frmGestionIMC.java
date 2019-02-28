@@ -27,6 +27,7 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmGestionIMC extends javax.swing.JFrame {
+
     MensajesModales cargaAsync = new MensajesModales();
     ModeloUsuario sesion;
 
@@ -621,16 +622,14 @@ public class frmGestionIMC extends javax.swing.JFrame {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy, HH:mm:SS");
             Calendar hoy = Calendar.getInstance();
             String fechaHoy = format.format(hoy.getTime());
-            ControladorRango conR = new ControladorRango();
-            ModeloRango rango = conR.obtenerIdRango(imc);
             AsyncTask consulta;
-            
-            (consulta = new AsyncTask(rango.getId(),fechaHoy,imc)).execute();
+            (consulta = new AsyncTask(fechaHoy, imc)).execute();
             cargaAsync.loading();
-            boolean resultado = consulta.get();
+            Object lista[] = consulta.get();
+            boolean resultado = (boolean) lista[0];
             if (resultado) {
                 lblIMC.setText(String.format("%.2f", imc));
-                lblClasificacion.setText(rango.getCategoria());
+                lblClasificacion.setText((String)lista[1]);
                 mensaje = new MensajesModales(this, "El IMC ha sido registrado correctamente en el historial", "Ok", 1);
                 mensaje.ShowMessage();
             } else {
@@ -643,21 +642,24 @@ public class frmGestionIMC extends javax.swing.JFrame {
         }
 
     }
-    private class AsyncTask extends SwingWorker<Boolean, String> {
+
+    private class AsyncTask extends SwingWorker<Object[], String> {
+
         String fecha;
-        int rango;
         double imc;
 
-        
-        public AsyncTask(int rango, String fecha, double imc){
+        public AsyncTask(String fecha, double imc) {
             this.fecha = fecha;
-            this.rango = rango;
             this.imc = imc;
-        }        
-        protected Boolean doInBackground() throws Exception {
+        }
+
+        protected Object[] doInBackground() throws Exception {
             ControladorIMC con = new ControladorIMC();
-            ModeloIMC imcM = new ModeloIMC(sesion.getId(), rango, imc, fecha);
-            return con.registrarIMC(imcM);
+            ControladorRango conR = new ControladorRango();
+            ModeloRango rango = conR.obtenerIdRango(imc);
+            ModeloIMC imcM = new ModeloIMC(sesion.getId(), rango.getId(), imc, fecha);
+            Object lista[] = {con.registrarIMC(imcM), rango.getCategoria()};
+            return lista;
         }
 
         @Override

@@ -159,7 +159,7 @@ public class MensajesModales extends JDialog {
         setModal(true);
         pack();
         double x = Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - this.getWidth() / 2;
-        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight();
+        double y = Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - this.getHeight()/1.3;
         setLocation((int) x, (int) y);
         setVisible(true);
     }

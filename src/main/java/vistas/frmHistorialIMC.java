@@ -50,7 +50,6 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         lblUsuario = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JButton();
@@ -82,37 +81,6 @@ public class frmHistorialIMC extends javax.swing.JFrame {
 
         lblUsuario.setFont(new java.awt.Font("Nirmala UI", 1, 13)); // NOI18N
         lblUsuario.setText("Nombre Apellido");
-
-        btnEditar.setBackground(new java.awt.Color(177, 255, 160));
-        btnEditar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(102, 102, 102));
-        btnEditar.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/mbshtkS/settings.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
-        btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnEditar.setContentAreaFilled(false);
-        btnEditar.setOpaque(true);
-        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnEditarMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnEditarMouseReleased(evt);
-            }
-        });
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
 
         btnLogout.setBackground(new java.awt.Color(177, 255, 160));
         btnLogout.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
@@ -155,10 +123,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,9 +133,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
                     .addComponent(lblUsuario)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -380,23 +343,6 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMousePressed
-        // TODO add your handling code here:
-        btnEditar.setBorder(new LineBorder(new Color(255, 255, 255)));
-    }//GEN-LAST:event_btnEditarMousePressed
-
-    private void btnEditarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseReleased
-        // TODO add your handling code here:
-        btnEditar.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnEditarMouseReleased
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-        frmModificarUsuario mod = new frmModificarUsuario(sesion);
-        mod.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnEditarActionPerformed
-
     private void btnLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLogoutMousePressed
         // TODO add your handling code here:
         btnLogout.setBorder(new LineBorder(new Color(255, 255, 255)));
@@ -479,6 +425,9 @@ public class frmHistorialIMC extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         // TODO add your handling code here:
+        frmGestionIMC back = new frmGestionIMC(sesion);
+        back.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnEliminarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarMousePressed
@@ -532,7 +481,6 @@ public class frmHistorialIMC extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
