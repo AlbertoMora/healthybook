@@ -304,15 +304,15 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblUser">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="1" name="https://i.ibb.co/2cz1RC7/man-user.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;/resources/man-user.png&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblUser2">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="1" name="https://i.ibb.co/YLjdx0g/lock.png"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;/resources/lock.png&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>

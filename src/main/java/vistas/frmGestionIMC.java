@@ -15,6 +15,8 @@ import java.awt.Insets;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
@@ -87,17 +89,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(177, 255, 160));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 153, 252)));
 
-        jLabel9.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/2cz1RC7/man-user.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel9.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/man-user.png"));
 
         lblUsuario.setFont(new java.awt.Font("Nirmala UI", 1, 13)); // NOI18N
         lblUsuario.setText("Nombre Apellido");
@@ -105,17 +97,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnEditar.setBackground(new java.awt.Color(177, 255, 160));
         btnEditar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnEditar.setForeground(new java.awt.Color(102, 102, 102));
-        btnEditar.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/mbshtkS/settings.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        btnEditar.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/settings.png"));
         btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnEditar.setContentAreaFilled(false);
         btnEditar.setOpaque(true);
@@ -136,17 +118,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnLogout.setBackground(new java.awt.Color(177, 255, 160));
         btnLogout.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(102, 102, 102));
-        btnLogout.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/QQRQ2Q3/power-button-off.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        btnLogout.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/power-button-off.png"));
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLogout.setContentAreaFilled(false);
         btnLogout.setOpaque(true);
@@ -290,12 +262,13 @@ public class frmGestionIMC extends javax.swing.JFrame {
             }
         });
 
-        btnLimpiar.setBackground(new java.awt.Color(252, 153, 178));
+        btnLimpiar.setBackground(new java.awt.Color(226, 224, 224));
         btnLimpiar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnLimpiar.setForeground(new java.awt.Color(102, 102, 102));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnLimpiar.setContentAreaFilled(false);
+        btnLimpiar.setEnabled(false);
         btnLimpiar.setOpaque(true);
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -332,29 +305,9 @@ public class frmGestionIMC extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/fSNbHHy/height.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel10.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/height.png"));
 
-        jLabel11.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/gwJ12X5/weight-scale.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel11.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/weight-scale.png"));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -524,7 +477,9 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
         // TODO add your handling code here:
-        btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
+        if(btnCalcular.isEnabled()){
+            btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
+        }
     }//GEN-LAST:event_btnCalcularMousePressed
 
     private void btnCalcularMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseReleased
@@ -534,15 +489,22 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
-        double altura = Double.parseDouble(txtAltura.getText()) / 100;
-        double peso = Double.parseDouble(txtPeso.getText());
-        double imc = peso / (Math.pow(altura, 2));
-        registrarIMC(imc);
+        if (!txtAltura.getText().equals("") && !txtPeso.getText().equals("")) {
+            double altura = Double.parseDouble(txtAltura.getText()) / 100;
+            double peso = Double.parseDouble(txtPeso.getText());
+            double imc = peso / (Math.pow(altura, 2));
+            registrarIMC(imc);
+        } else {
+            MensajesModales mensaje = new MensajesModales(this, "Por favor complete los campos \"Altura\" y \"Peso\".", "Ok", 1);
+            mensaje.ShowMessage();
+        }
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void btnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMousePressed
         // TODO add your handling code here:
-        btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
+        if(btnLimpiar.isEnabled()){
+            btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
+        }
     }//GEN-LAST:event_btnLimpiarMousePressed
 
     private void btnLimpiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseReleased
@@ -552,6 +514,11 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         // TODO add your handling code here:
+        lblClasificacion.setText("N/A");
+        lblIMC.setText("N/A");
+        txtAltura.setText("");
+        txtPeso.setText("");
+        cambiarEstado(btnLimpiar,btnCalcular, new Color(226, 224, 224),new Color(177,255,160));
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -629,11 +596,12 @@ public class frmGestionIMC extends javax.swing.JFrame {
             boolean resultado = (boolean) lista[0];
             if (resultado) {
                 lblIMC.setText(String.format("%.2f", imc));
-                lblClasificacion.setText((String)lista[1]);
+                lblClasificacion.setText((String) lista[1]);
                 mensaje = new MensajesModales(this, "El IMC ha sido registrado correctamente en el historial", "Ok", 1);
+                cambiarEstado(btnCalcular,btnLimpiar,new Color(226, 224, 224),new Color(252,153,178));
                 mensaje.ShowMessage();
             } else {
-                mensaje = new MensajesModales(this, "Los datos ingresados no son válidos, por favor inténtelo de nuevo", "Ok", 1);
+                mensaje = new MensajesModales(this, "Los valores ingresados no son válidos para el cálculo del IMC, por favor inténtelo de nuevo", "Ok", 1);
                 mensaje.ShowMessage();
             }
         } catch (Exception e) {
@@ -642,7 +610,12 @@ public class frmGestionIMC extends javax.swing.JFrame {
         }
 
     }
-
+    private void cambiarEstado(JButton botonDesac, JButton botonActi, Color color1, Color color2){
+        botonDesac.setEnabled(false);
+        botonDesac.setBackground(color1);
+        botonActi.setEnabled(true);
+        botonActi.setBackground(color2);
+    }
     private class AsyncTask extends SwingWorker<Object[], String> {
 
         String fecha;

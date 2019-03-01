@@ -8,6 +8,7 @@ import CustomDependencies.ComponentMover;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
 import modelos.ModeloUsuario;
@@ -67,17 +68,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(177, 255, 160));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 153, 252)));
 
-        jLabel9.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/2cz1RC7/man-user.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel9.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/man-user.png"));
 
         lblUsuario.setFont(new java.awt.Font("Nirmala UI", 1, 13)); // NOI18N
         lblUsuario.setText("Nombre Apellido");
@@ -85,17 +76,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnLogout.setBackground(new java.awt.Color(177, 255, 160));
         btnLogout.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
         btnLogout.setForeground(new java.awt.Color(102, 102, 102));
-        btnLogout.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/QQRQ2Q3/power-button-off.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        btnLogout.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/power-button-off.png"));
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLogout.setContentAreaFilled(false);
         btnLogout.setOpaque(true);

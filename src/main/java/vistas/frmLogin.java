@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
@@ -20,7 +21,9 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmLogin extends javax.swing.JFrame {
+
     MensajesModales cargaAsync = new MensajesModales();
+
     /**
      * Creates new form frmLogin
      */
@@ -159,29 +162,9 @@ public class frmLogin extends javax.swing.JFrame {
             }
         });
 
-        lblUser.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/2cz1RC7/man-user.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        lblUser.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/man-user.png"));
 
-        lblUser2.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/YLjdx0g/lock.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        lblUser2.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/lock.png"));
 
         txtContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
@@ -331,7 +314,7 @@ public class frmLogin extends javax.swing.JFrame {
             try {
                 (consulta = new AsyncTask()).execute();
                 cargaAsync.loading();
-                datos = (ModeloUsuario)consulta.get();
+                datos = (ModeloUsuario) consulta.get();
                 frmGestionIMC main = new frmGestionIMC(datos);
                 main.setVisible(true);
                 this.dispose();
@@ -357,12 +340,13 @@ public class frmLogin extends javax.swing.JFrame {
         reg.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistroActionPerformed
+
     private class AsyncTask extends SwingWorker<Object, String> {
 
         @Override
         protected Object doInBackground() throws Exception {
             ControladorUsuario con = new ControladorUsuario();
-            return con.obtenerDatosSesion(txtUsuario.getText().replace("'", "''"),new String(txtContra.getPassword()).replace("'", "''"));
+            return con.obtenerDatosSesion(txtUsuario.getText().replace("'", "''"), new String(txtContra.getPassword()).replace("'", "''"));
         }
 
         @Override
@@ -371,6 +355,7 @@ public class frmLogin extends javax.swing.JFrame {
         }
 
     }
+
     /**
      * @param args the command line arguments
      */

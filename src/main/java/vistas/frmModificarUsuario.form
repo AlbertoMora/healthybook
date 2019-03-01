@@ -470,8 +470,8 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="1" name="https://i.ibb.co/0yT6VDj/account.png"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new ImageIcon(System.getProperty(&quot;user.dir&quot;) + &quot;/resources/account.png&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>

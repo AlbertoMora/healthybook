@@ -10,6 +10,7 @@ import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import libreriasExternas.MensajesModales;
@@ -172,17 +173,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setText("Datos de la cuenta");
 
-        jLabel9.setIcon(new javax.swing.JLabel() {
-            public javax.swing.Icon getIcon() {
-                try {
-                    return new javax.swing.ImageIcon(
-                        new java.net.URL("https://i.ibb.co/0yT6VDj/account.png")
-                    );
-                } catch (java.net.MalformedURLException e) {
-                }
-                return null;
-            }
-        }.getIcon());
+        jLabel9.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/account.png"));
 
         txtAContra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtAContra.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(226, 224, 224), new java.awt.Color(177, 255, 160)));
