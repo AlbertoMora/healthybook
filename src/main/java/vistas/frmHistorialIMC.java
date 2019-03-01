@@ -4,13 +4,20 @@
  * and open the template in the editor.
  */
 package vistas;
+
 import CustomDependencies.ComponentMover;
+import controladores.ControladorIMC;
+import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import libreriasExternas.MensajesModales;
+import modelos.ModeloIMC;
 import modelos.ModeloUsuario;
 
 /**
@@ -18,7 +25,12 @@ import modelos.ModeloUsuario;
  * @author Alberto Mora
  */
 public class frmHistorialIMC extends javax.swing.JFrame {
+
     ModeloUsuario sesion;
+    MensajesModales cargaAsync = new MensajesModales();
+    ArrayList<ModeloIMC> datos;
+    DefaultTableModel tableModel;
+
     /**
      * Creates new form frmHistorialIMC
      */
@@ -26,17 +38,28 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+
     public frmHistorialIMC(ModeloUsuario sesion) {
         initComponents();
         setLocationRelativeTo(null);
         this.sesion = sesion;
         iniCompPropios();
-        
+
     }
+
     private void iniCompPropios() {
         lblUsuario.setText(sesion.getNombre() + " " + sesion.getApellidos());
         ComponentMover cm = new ComponentMover();
         cm.registerComponent(this);
+        String encabezado[] = {"IMC", "Fecha", "Dieta", "Rutina", "Categoría", "id"};
+        tableModel = new DefaultTableModel(null, encabezado);
+        tblDatos.setModel(tableModel);
+        tblDatos.getColumnModel().getColumn(5).setMaxWidth(0);
+        tblDatos.getColumnModel().getColumn(5).setMinWidth(0);
+        tblDatos.getColumnModel().getColumn(5).setWidth(0);
+        tblDatos.getColumnModel().getColumn(5).setPreferredWidth(0);
+        tblDatos.sizeColumnsToFit(-1);
+        cargarTabla();
     }
 
     /**
@@ -57,7 +80,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDatos = new javax.swing.JTable();
         btnPDF = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
@@ -164,22 +187,22 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)), "Historial de IMC's", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 24))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1", "1", "1", null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {"1", "1", "1", "1", null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "IMC", "Fecha", "Dieta", "Rutina", "Categoría"
+                "IMC", "Fecha", "Dieta", "Rutina", "Categoría", "Título 6"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(226, 224, 224));
-        jTable1.setRowHeight(24);
-        jTable1.setSelectionBackground(new java.awt.Color(177, 251, 195));
-        jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jTable1);
+        tblDatos.setGridColor(new java.awt.Color(226, 224, 224));
+        tblDatos.setRowHeight(24);
+        tblDatos.setSelectionBackground(new java.awt.Color(177, 251, 195));
+        tblDatos.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(tblDatos);
 
         btnPDF.setBackground(new java.awt.Color(153, 252, 240));
         btnPDF.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
@@ -424,6 +447,41 @@ public class frmHistorialIMC extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarActionPerformed
+    private void cargarTabla() {
+        AsyncTask db;
+        MensajesModales mensaje;
+        (db = new AsyncTask()).execute();
+        cargaAsync.loading();
+        try {
+            datos = db.get();
+        } catch (Exception e) {
+            mensaje = new MensajesModales(this, "No existen IMC, Dietas o Rutinas registradas para este usuario, por favor inténtelo de nuevo", "Ok", 1);
+            mensaje.ShowMessage();
+        }
+        if(datos.size() > 0){
+        for(ModeloIMC c:datos){
+            String fila[] = {Double.toString(c.getIMC()), c.getFecha(), c.getNombreDietaRec(), c.getNombreRutinaRec(), c.getCategoria(),Integer.toString(c.getId())};
+            tableModel.addRow(fila);
+        }
+        }else{
+            mensaje = new MensajesModales(this, "No existen IMC, Dietas o Rutinas registradas para este usuario, por favor inténtelo más tarde", "Ok", 1);
+            mensaje.ShowMessage();
+        }
+    }
+
+    private class AsyncTask extends SwingWorker<ArrayList<ModeloIMC>, String> {
+
+        @Override
+        protected ArrayList<ModeloIMC> doInBackground() throws Exception {
+            ControladorIMC con = new ControladorIMC();
+            return con.obtenerHistorialIMC(sesion.getId());
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -472,7 +530,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JTable tblDatos;
     // End of variables declaration//GEN-END:variables
 }

@@ -477,7 +477,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
         // TODO add your handling code here:
-        if(btnCalcular.isEnabled()){
+        if (btnCalcular.isEnabled()) {
             btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
         }
     }//GEN-LAST:event_btnCalcularMousePressed
@@ -490,10 +490,16 @@ public class frmGestionIMC extends javax.swing.JFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
         if (!txtAltura.getText().equals("") && !txtPeso.getText().equals("")) {
-            double altura = Double.parseDouble(txtAltura.getText()) / 100;
-            double peso = Double.parseDouble(txtPeso.getText());
-            double imc = peso / (Math.pow(altura, 2));
-            registrarIMC(imc);
+            try {
+                double altura = Double.parseDouble(txtAltura.getText()) / 100;
+                double peso = Double.parseDouble(txtPeso.getText());
+                double imc = peso / (Math.pow(altura, 2));
+                registrarIMC(imc);
+            } catch (NumberFormatException e) {
+                MensajesModales mensaje = new MensajesModales(this, "Por favor ingresar sólo valores numéricos.", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+
         } else {
             MensajesModales mensaje = new MensajesModales(this, "Por favor complete los campos \"Altura\" y \"Peso\".", "Ok", 1);
             mensaje.ShowMessage();
@@ -502,7 +508,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
 
     private void btnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMousePressed
         // TODO add your handling code here:
-        if(btnLimpiar.isEnabled()){
+        if (btnLimpiar.isEnabled()) {
             btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
         }
     }//GEN-LAST:event_btnLimpiarMousePressed
@@ -518,7 +524,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         lblIMC.setText("N/A");
         txtAltura.setText("");
         txtPeso.setText("");
-        cambiarEstado(btnLimpiar,btnCalcular, new Color(226, 224, 224),new Color(177,255,160));
+        cambiarEstado(btnLimpiar, btnCalcular, new Color(226, 224, 224), new Color(177, 255, 160));
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
@@ -598,7 +604,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 lblIMC.setText(String.format("%.2f", imc));
                 lblClasificacion.setText((String) lista[1]);
                 mensaje = new MensajesModales(this, "El IMC ha sido registrado correctamente en el historial", "Ok", 1);
-                cambiarEstado(btnCalcular,btnLimpiar,new Color(226, 224, 224),new Color(252,153,178));
+                cambiarEstado(btnCalcular, btnLimpiar, new Color(226, 224, 224), new Color(252, 153, 178));
                 mensaje.ShowMessage();
             } else {
                 mensaje = new MensajesModales(this, "Los valores ingresados no son válidos para el cálculo del IMC, por favor inténtelo de nuevo", "Ok", 1);
@@ -610,12 +616,14 @@ public class frmGestionIMC extends javax.swing.JFrame {
         }
 
     }
-    private void cambiarEstado(JButton botonDesac, JButton botonActi, Color color1, Color color2){
+
+    private void cambiarEstado(JButton botonDesac, JButton botonActi, Color color1, Color color2) {
         botonDesac.setEnabled(false);
         botonDesac.setBackground(color1);
         botonActi.setEnabled(true);
         botonActi.setBackground(color2);
     }
+
     private class AsyncTask extends SwingWorker<Object[], String> {
 
         String fecha;
