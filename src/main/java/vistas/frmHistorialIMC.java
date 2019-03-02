@@ -29,7 +29,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
     MensajesModales cargaAsync = new MensajesModales();
     ArrayList<ModeloIMC> datos;
     DefaultTableModel tableModel;
-    
+
     /**
      * Creates new form frmHistorialIMC
      */
@@ -464,6 +464,43 @@ public class frmHistorialIMC extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
+        MensajesModales mensaje;
+        if (tblDatos.getSelectedRows().length != 0) {
+            if (!(tblDatos.getSelectedRows().length > 1)) {
+                mensaje = new MensajesModales(this, "Está acción es permanente e irreversible, ¿Desea continuar?", "Continuar", 2);
+                mensaje.ShowMessage();
+                if (mensaje.getResult() == 1) {
+                    int idRow = tblDatos.getSelectedRow();
+                    String idText = (String) tblDatos.getModel().getValueAt(idRow, 5);
+                    System.out.println(idText);
+                    int id =  Integer.parseInt(idText);
+                    AsyncDelete borrar;
+                    (borrar = new AsyncDelete(id)).execute();
+                    cargaAsync.loading();
+                    try {
+                        boolean result = borrar.get();
+                        if (result) {
+                            mensaje = new MensajesModales(this, "El registro ha sido eliminado correctamente", "Ok", 1);
+                            mensaje.ShowMessage();
+                            tableModel.removeRow(idRow);
+                        } else {
+                            mensaje = new MensajesModales(this, "Ha ocurrido un error inesperado, por favor inténtelo más tarde o contacte al administrador para más información", "Ok", 1);
+                            mensaje.ShowMessage();
+                        }
+                    } catch (Exception e) {
+                        mensaje = new MensajesModales(this, "Ha ocurrido un error inesperado, por favor inténtelo más tarde", "Ok", 1);
+                        mensaje.ShowMessage();
+                        System.out.println(e);
+                    }
+                }
+            } else {
+                mensaje = new MensajesModales(this, "Por favor seleccione sólo un registro a la vez", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+        } else {
+            mensaje = new MensajesModales(this, "Para realizar esta acción debe seleccionar un registro", "Ok", 1);
+            mensaje.ShowMessage();
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
     private void cargarTabla() {
         AsyncTask db;
@@ -476,12 +513,12 @@ public class frmHistorialIMC extends javax.swing.JFrame {
             mensaje = new MensajesModales(this, "No existen IMC, Dietas o Rutinas registradas para este usuario, por favor inténtelo de nuevo", "Ok", 1);
             mensaje.ShowMessage();
         }
-        if(datos.size() > 0){
-        for(ModeloIMC c:datos){
-            String fila[] = {Double.toString(c.getIMC()), c.getFecha(), c.getNombreDietaRec(), c.getNombreRutinaRec(), c.getCategoria(),Integer.toString(c.getId())};
-            tableModel.addRow(fila);
-        }
-        }else{
+        if (datos.size() > 0) {
+            for (ModeloIMC c : datos) {
+                String fila[] = {Double.toString(c.getIMC()), c.getFecha(), c.getNombreDietaRec(), c.getNombreRutinaRec(), c.getCategoria(), Integer.toString(c.getId())};
+                tableModel.addRow(fila);
+            }
+        } else {
             mensaje = new MensajesModales(this, "No existen IMC, Dietas o Rutinas registradas para este usuario, por favor inténtelo más tarde", "Ok", 1);
             mensaje.ShowMessage();
         }
@@ -493,6 +530,26 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         protected ArrayList<ModeloIMC> doInBackground() throws Exception {
             ControladorIMC con = new ControladorIMC();
             return con.obtenerHistorialIMC(sesion.getId());
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+    }
+
+    private class AsyncDelete extends SwingWorker<Boolean, String> {
+
+        int id;
+
+        public AsyncDelete(int id) {
+            this.id = id;
+        }
+
+        @Override
+        protected Boolean doInBackground() throws Exception {
+            ControladorIMC con = new ControladorIMC();
+            return con.eliminarIMC(id);
         }
 
         @Override
