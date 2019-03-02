@@ -7,7 +7,6 @@ package vistas;
 
 import CustomDependencies.ComponentMover;
 import controladores.ControladorIMC;
-import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
@@ -30,13 +29,14 @@ public class frmHistorialIMC extends javax.swing.JFrame {
     MensajesModales cargaAsync = new MensajesModales();
     ArrayList<ModeloIMC> datos;
     DefaultTableModel tableModel;
-
+    
     /**
      * Creates new form frmHistorialIMC
      */
     public frmHistorialIMC() {
         initComponents();
         setLocationRelativeTo(null);
+        iniCompPropios();
     }
 
     public frmHistorialIMC(ModeloUsuario sesion) {
@@ -87,6 +87,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(177, 255, 160));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(176, 153, 252)));
@@ -102,6 +103,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnLogout.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/power-button-off.png"));
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLogout.setContentAreaFilled(false);
+        btnLogout.setFocusable(false);
         btnLogout.setOpaque(true);
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -149,6 +151,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setFocusable(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -169,6 +172,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnCerrar.setText("X");
         btnCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setFocusable(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -187,6 +191,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)), "Historial de IMC's", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 24))); // NOI18N
 
+        tblDatos.setFont(new java.awt.Font("Nirmala UI", 0, 16)); // NOI18N
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "1", "1", "1", null, null},
@@ -197,9 +202,19 @@ public class frmHistorialIMC extends javax.swing.JFrame {
             new String [] {
                 "IMC", "Fecha", "Dieta", "Rutina", "Categoría", "Título 6"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDatos.setFocusable(false);
         tblDatos.setGridColor(new java.awt.Color(226, 224, 224));
-        tblDatos.setRowHeight(24);
+        tblDatos.setIntercellSpacing(new java.awt.Dimension(0, 0));
+        tblDatos.setRowHeight(40);
         tblDatos.setSelectionBackground(new java.awt.Color(177, 251, 195));
         tblDatos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblDatos);
@@ -210,6 +225,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnPDF.setText("Ver PDF");
         btnPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnPDF.setContentAreaFilled(false);
+        btnPDF.setFocusable(false);
         btnPDF.setOpaque(true);
         btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -231,6 +247,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnVolver.setText("Volver");
         btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnVolver.setContentAreaFilled(false);
+        btnVolver.setFocusable(false);
         btnVolver.setOpaque(true);
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -252,6 +269,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setFocusable(false);
         btnEliminar.setOpaque(true);
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -487,14 +505,10 @@ public class frmHistorialIMC extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        //Set custom LaF
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

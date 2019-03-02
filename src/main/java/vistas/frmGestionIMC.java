@@ -100,6 +100,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnEditar.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/settings.png"));
         btnEditar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnEditar.setContentAreaFilled(false);
+        btnEditar.setFocusPainted(false);
         btnEditar.setOpaque(true);
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -121,6 +122,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnLogout.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/power-button-off.png"));
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLogout.setContentAreaFilled(false);
+        btnLogout.setFocusPainted(false);
         btnLogout.setOpaque(true);
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -247,6 +249,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnCalcular.setText("Calcular");
         btnCalcular.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnCalcular.setContentAreaFilled(false);
+        btnCalcular.setFocusPainted(false);
         btnCalcular.setOpaque(true);
         btnCalcular.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -269,6 +272,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnLimpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnLimpiar.setContentAreaFilled(false);
         btnLimpiar.setEnabled(false);
+        btnLimpiar.setFocusPainted(false);
         btnLimpiar.setOpaque(true);
         btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -290,6 +294,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnHistorico.setText("Ver histórico");
         btnHistorico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnHistorico.setContentAreaFilled(false);
+        btnHistorico.setFocusPainted(false);
         btnHistorico.setOpaque(true);
         btnHistorico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

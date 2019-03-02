@@ -66,8 +66,9 @@ public class frmLogin extends javax.swing.JFrame {
         btnCerrar.setBackground(new java.awt.Color(250, 250, 250));
         btnCerrar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         btnCerrar.setText("X");
-        btnCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
+        btnCerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setFocusPainted(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -86,8 +87,9 @@ public class frmLogin extends javax.swing.JFrame {
         btnMinimizar.setBackground(new java.awt.Color(250, 250, 250));
         btnMinimizar.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         btnMinimizar.setText("_");
-        btnMinimizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
+        btnMinimizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setFocusPainted(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -123,6 +125,7 @@ public class frmLogin extends javax.swing.JFrame {
         btnLogin.setText("Iniciar Sesión");
         btnLogin.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnLogin.setContentAreaFilled(false);
+        btnLogin.setFocusPainted(false);
         btnLogin.setOpaque(true);
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -147,6 +150,7 @@ public class frmLogin extends javax.swing.JFrame {
         btnRegistro.setText("Registrarse");
         btnRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(177, 255, 160)));
         btnRegistro.setContentAreaFilled(false);
+        btnRegistro.setFocusPainted(false);
         btnRegistro.setOpaque(true);
         btnRegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -238,7 +242,7 @@ public class frmLogin extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(20, 20, 20)
                 .addComponent(btnRegistro)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -367,7 +371,9 @@ public class frmLogin extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                System.out.println(info.getName());
+                if ("Windows".equals(info.getName())) {
+                    System.out.println("Setted: " + info.getName());
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
