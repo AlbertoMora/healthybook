@@ -103,7 +103,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnLogout.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/power-button-off.png"));
         btnLogout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btnLogout.setContentAreaFilled(false);
-        btnLogout.setFocusable(false);
+        btnLogout.setFocusPainted(false);
         btnLogout.setOpaque(true);
         btnLogout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -151,7 +151,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
-        btnMinimizar.setFocusable(false);
+        btnMinimizar.setFocusPainted(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -172,7 +172,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnCerrar.setText("X");
         btnCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
-        btnCerrar.setFocusable(false);
+        btnCerrar.setFocusPainted(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -225,7 +225,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnPDF.setText("Ver PDF");
         btnPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnPDF.setContentAreaFilled(false);
-        btnPDF.setFocusable(false);
+        btnPDF.setFocusPainted(false);
         btnPDF.setOpaque(true);
         btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -247,7 +247,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnVolver.setText("Volver");
         btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnVolver.setContentAreaFilled(false);
-        btnVolver.setFocusable(false);
+        btnVolver.setFocusPainted(false);
         btnVolver.setOpaque(true);
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -269,7 +269,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setFocusable(false);
+        btnEliminar.setFocusPainted(false);
         btnEliminar.setOpaque(true);
         btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

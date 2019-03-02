@@ -175,6 +175,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnMinimizar.setText("_");
         btnMinimizar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
+        btnMinimizar.setFocusPainted(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -195,6 +196,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         btnCerrar.setText("X");
         btnCerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder(null, new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
+        btnCerrar.setFocusPainted(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
