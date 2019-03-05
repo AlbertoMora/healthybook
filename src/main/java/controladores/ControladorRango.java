@@ -17,8 +17,7 @@ import modelos.ModeloRango;
 public class ControladorRango {
     public ModeloRango obtenerIdRango(double imc) throws SQLException{
         DBManager db = new DBManager();
-        String query = String.format("ObtenerRango %s", imc);
-        ResultSet data = db.CallProcedureWResults(query);
+        ResultSet data = db.CallProcedureWResults("ObtenerRango ?", new Object[]{imc});
         ModeloRango datos = new ModeloRango();
         while(data.next()){
             datos.setId(data.getInt("id"));

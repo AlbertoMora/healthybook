@@ -20,8 +20,9 @@ public class ControladorUsuario {
         ResultSet data;
         ModeloUsuario usuario;
         DBManager db = new DBManager();
-        String query = String.format("LoginData '%s','%s'", user, password);
-        data = db.CallProcedureWResults(query);
+        String query = "LoginData ?,?";
+        String params[] = {user, password};
+        data = db.CallProcedureWResults(query, params);
         if (data.next()) {
             usuario = new ModeloUsuario(data.getInt("id"), data.getString("nombre"), data.getString("apellidos"), data.getString("nombreUsuario"), data.getString("email"),
                     data.getString("contrasena"), data.getString("telefono"), data.getBoolean("esAdmin"));
@@ -33,21 +34,21 @@ public class ControladorUsuario {
 
     public boolean registrarUsuario(ModeloUsuario usuario) {
         DBManager db = new DBManager();
-        String query = String.format("RegistrarUsuario '%s','%s','%s','%s','%s','%s',0", usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(),
-                usuario.getContrasena(), usuario.getTelefono());
-        return db.CallProcedure(query);
+        String query = "RegistrarUsuario ?,?,?,?,?,?,0";
+        Object params[] = {usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getContrasena(), usuario.getTelefono()};
+        return db.CallProcedure(query, params);
     }
 
     public boolean eliminarUsuario(int id) {
         DBManager db = new DBManager();
-        String query = String.format("EliminarUsuario %s", id);
-        return db.CallProcedure(query);
+        String query = "EliminarUsuario ?";
+        return db.CallProcedure(query, new Object[]{id});
     }
 
     public boolean actualizarUsuario(ModeloUsuario usuario) {
         DBManager db = new DBManager();
-        String query = String.format("ActualizarUsuario %s,'%s','%s','%s','%s','%s','%s',%s", usuario.getId(), usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(),
-                usuario.getContrasena(), usuario.getTelefono(), usuario.isEsAdmin());
-        return db.CallProcedure(query);
+        String query = "ActualizarUsuario ?,?,?,?,?,?,?,?";
+        Object params[] = {usuario.getId(), usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getContrasena(), usuario.getTelefono(), usuario.isEsAdmin()};
+        return db.CallProcedure(query, params);
     }
 }
