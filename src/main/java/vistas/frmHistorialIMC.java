@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import CustomDependencies.ComponentMover;
+import libreriasExternas.ComponentMover;
 import controladores.ControladorIMC;
 import java.awt.Color;
 import java.awt.Frame;

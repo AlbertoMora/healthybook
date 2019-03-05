@@ -18,6 +18,12 @@
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
+        <!-- Repositorio de IText -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.0.6</version>
+        </dependency>
         <!-- MS SQL JDBC -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>

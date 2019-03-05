@@ -5,7 +5,7 @@
  */
 package vistas;
 
-import CustomDependencies.ComponentMover;
+import libreriasExternas.ComponentMover;
 import controladores.ControladorIMC;
 import controladores.ControladorRango;
 import controladores.ControladorUsuario;
