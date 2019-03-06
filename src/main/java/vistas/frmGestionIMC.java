@@ -62,6 +62,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        frmIntranet = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
@@ -138,6 +139,28 @@ public class frmGestionIMC extends javax.swing.JFrame {
             }
         });
 
+        frmIntranet.setBackground(new java.awt.Color(177, 255, 160));
+        frmIntranet.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        frmIntranet.setForeground(new java.awt.Color(102, 102, 102));
+        frmIntranet.setText("Intranet");
+        frmIntranet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        frmIntranet.setContentAreaFilled(false);
+        frmIntranet.setFocusPainted(false);
+        frmIntranet.setOpaque(true);
+        frmIntranet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                frmIntranetMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                frmIntranetMouseReleased(evt);
+            }
+        });
+        frmIntranet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIntranetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,6 +175,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(frmIntranet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +188,9 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(frmIntranet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -448,110 +474,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMousePressed
-        // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnMinimizarMousePressed
-
-    private void btnMinimizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseReleased
-        // TODO add your handling code here:
-        btnMinimizar.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnMinimizarMouseReleased
-
-    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        // TODO add your handling code here:
-        this.setState(Frame.ICONIFIED);
-    }//GEN-LAST:event_btnMinimizarActionPerformed
-
-    private void btnCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMousePressed
-        // TODO add your handling code here:
-        btnCerrar.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnCerrarMousePressed
-
-    private void btnCerrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseReleased
-        // TODO add your handling code here:
-        btnCerrar.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnCerrarMouseReleased
-
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        // TODO add your handling code here:
-        MensajesModales mensaje = new MensajesModales(this, "¿Está seguro que desea salir del sistema?", "Continuar", 2);
-        mensaje.ShowMessage();
-        if (mensaje.getResult() == 1) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
-        // TODO add your handling code here:
-        if (btnCalcular.isEnabled()) {
-            btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
-        }
-    }//GEN-LAST:event_btnCalcularMousePressed
-
-    private void btnCalcularMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseReleased
-        // TODO add your handling code here:
-        btnCalcular.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnCalcularMouseReleased
-
-    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
-        if (!txtAltura.getText().equals("") && !txtPeso.getText().equals("")) {
-            try {
-                double altura = Double.parseDouble(txtAltura.getText()) / 100;
-                double peso = Double.parseDouble(txtPeso.getText());
-                double imc = peso / (Math.pow(altura, 2));
-                registrarIMC(imc);
-            } catch (NumberFormatException e) {
-                MensajesModales mensaje = new MensajesModales(this, "Por favor ingresar sólo valores numéricos.", "Ok", 1);
-                mensaje.ShowMessage();
-            }
-
-        } else {
-            MensajesModales mensaje = new MensajesModales(this, "Por favor complete los campos \"Altura\" y \"Peso\".", "Ok", 1);
-            mensaje.ShowMessage();
-        }
-    }//GEN-LAST:event_btnCalcularActionPerformed
-
-    private void btnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMousePressed
-        // TODO add your handling code here:
-        if (btnLimpiar.isEnabled()) {
-            btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
-        }
-    }//GEN-LAST:event_btnLimpiarMousePressed
-
-    private void btnLimpiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseReleased
-        // TODO add your handling code here:
-        btnLimpiar.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnLimpiarMouseReleased
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-        lblClasificacion.setText("N/A");
-        lblIMC.setText("N/A");
-        txtAltura.setText("");
-        txtPeso.setText("");
-        cambiarEstado(btnLimpiar, btnCalcular, new Color(226, 224, 224), new Color(177, 255, 160));
-
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
-    private void btnHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMousePressed
-        // TODO add your handling code here:
-        btnHistorico.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnHistoricoMousePressed
-
-    private void btnHistoricoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMouseReleased
-        // TODO add your handling code here:
-        btnHistorico.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnHistoricoMouseReleased
-
-    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
-        // TODO add your handling code here:
-        frmHistorialIMC historial = new frmHistorialIMC(sesion);
-        historial.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnHistoricoActionPerformed
-
     private void btnEditarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMousePressed
         // TODO add your handling code here:
         btnEditar.setBorder(new LineBorder(new Color(255, 255, 255)));
@@ -590,10 +512,132 @@ public class frmGestionIMC extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void frmIntranetMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIntranetMousePressed
+        // TODO add your handling code here:
+        frmIntranet.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_frmIntranetMousePressed
+
+    private void frmIntranetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIntranetMouseReleased
+        // TODO add your handling code here:
+        frmIntranet.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_frmIntranetMouseReleased
+
+    private void frmIntranetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIntranetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frmIntranetActionPerformed
+
+    private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
+        // TODO add your handling code here:
+        frmHistorialIMC historial = new frmHistorialIMC(sesion);
+        historial.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnHistoricoActionPerformed
+
+    private void btnHistoricoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMouseReleased
+        // TODO add your handling code here:
+        btnHistorico.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnHistoricoMouseReleased
+
+    private void btnHistoricoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoricoMousePressed
+        // TODO add your handling code here:
+        btnHistorico.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnHistoricoMousePressed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        lblClasificacion.setText("N/A");
+        lblIMC.setText("N/A");
+        txtAltura.setText("");
+        txtPeso.setText("");
+        cambiarEstado(btnLimpiar, btnCalcular, new Color(226, 224, 224), new Color(177, 255, 160));
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnLimpiarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMouseReleased
+        // TODO add your handling code here:
+        btnLimpiar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnLimpiarMouseReleased
+
+    private void btnLimpiarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLimpiarMousePressed
+        // TODO add your handling code here:
+        if (btnLimpiar.isEnabled()) {
+            btnLimpiar.setBorder(new LineBorder(new Color(0, 0, 0)));
+        }
+    }//GEN-LAST:event_btnLimpiarMousePressed
+
+    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+        // TODO add your handling code here:
+        if (!txtAltura.getText().equals("") && !txtPeso.getText().equals("")) {
+            try {
+                double altura = Double.parseDouble(txtAltura.getText()) / 100;
+                double peso = Double.parseDouble(txtPeso.getText());
+                double imc = peso / (Math.pow(altura, 2));
+                registrarIMC(imc);
+            } catch (NumberFormatException e) {
+                MensajesModales mensaje = new MensajesModales(this, "Por favor ingresar sólo valores numéricos.", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+
+        } else {
+            MensajesModales mensaje = new MensajesModales(this, "Por favor complete los campos \"Altura\" y \"Peso\".", "Ok", 1);
+            mensaje.ShowMessage();
+        }
+    }//GEN-LAST:event_btnCalcularActionPerformed
+
+    private void btnCalcularMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMouseReleased
+        // TODO add your handling code here:
+        btnCalcular.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnCalcularMouseReleased
+
+    private void btnCalcularMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCalcularMousePressed
+        // TODO add your handling code here:
+        if (btnCalcular.isEnabled()) {
+            btnCalcular.setBorder(new LineBorder(new Color(0, 0, 0)));
+        }
+    }//GEN-LAST:event_btnCalcularMousePressed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        MensajesModales mensaje = new MensajesModales(this, "¿Está seguro que desea salir del sistema?", "Continuar", 2);
+        mensaje.ShowMessage();
+        if (mensaje.getResult() == 1) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnCerrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseReleased
+        // TODO add your handling code here:
+        btnCerrar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnCerrarMouseReleased
+
+    private void btnCerrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMousePressed
+        // TODO add your handling code here:
+        btnCerrar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnCerrarMousePressed
+
+    private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
+        // TODO add your handling code here:
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_btnMinimizarActionPerformed
+
+    private void btnMinimizarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMouseReleased
+        // TODO add your handling code here:
+        btnMinimizar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnMinimizarMouseReleased
+
+    private void btnMinimizarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMinimizarMousePressed
+        // TODO add your handling code here:
+        btnMinimizar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnMinimizarMousePressed
     private void iniCompPropios() {
         lblUsuario.setText(sesion.getNombre() + " " + sesion.getApellidos());
         ComponentMover cm = new ComponentMover();
         cm.registerComponent(this);
+        if(sesion.isEsAdmin()){
+            frmIntranet.setVisible(true);
+        }else{
+            frmIntranet.setVisible(false);
+        }
     }
 
     private void registrarIMC(double imc) {
@@ -700,6 +744,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
+    private javax.swing.JButton frmIntranet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
