@@ -21,6 +21,8 @@ import controladores.ControladorDieta;
 import controladores.ControladorRango;
 import controladores.ControladorRutina;
 import controladores.ControladorTurno;
+import java.awt.Desktop;
+import java.io.File;
 import java.util.ArrayList;
 import modelos.ModeloDieta;
 import modelos.ModeloRango;
@@ -59,34 +61,37 @@ public class PdfCreator {
             stamper.getAcroFields().setField("txtDescripRutina", rutina.getDescripcion());
             stamper.getAcroFields().setField("txtTiempoRutina", Double.toString(rutina.getDuracion()));
             stamper.getAcroFields().setField("txtUrlRutina", rutina.getUrl());
-            for(int c = 0; c < turnos.size(); c++){
-                int i = c+1;
-                stamper.getAcroFields().setField("txtHarina"+i, Integer.toString(turnos.get(c).getcHarinas()));
-                stamper.getAcroFields().setField("txtVeg"+i, Integer.toString(turnos.get(c).getcVegetales()));
-                stamper.getAcroFields().setField("txtLact"+i, Integer.toString(turnos.get(c).getcLacteos()));
-                stamper.getAcroFields().setField("txtCarne"+i, Integer.toString(turnos.get(c).getcCarne()));
-                stamper.getAcroFields().setField("txtFrutas"+i, Integer.toString(turnos.get(c).getcFrutas()));
-                stamper.getAcroFields().setField("txtGrasas"+i, Integer.toString(turnos.get(c).getcGrasas()));
+            for (int c = 0; c < turnos.size(); c++) {
+                int i = c + 1;
+                stamper.getAcroFields().setField("txtHarina" + i, Integer.toString(turnos.get(c).getcHarinas()));
+                stamper.getAcroFields().setField("txtVeg" + i, Integer.toString(turnos.get(c).getcVegetales()));
+                stamper.getAcroFields().setField("txtLact" + i, Integer.toString(turnos.get(c).getcLacteos()));
+                stamper.getAcroFields().setField("txtCarne" + i, Integer.toString(turnos.get(c).getcCarne()));
+                stamper.getAcroFields().setField("txtFrutas" + i, Integer.toString(turnos.get(c).getcFrutas()));
+                stamper.getAcroFields().setField("txtGrasas" + i, Integer.toString(turnos.get(c).getcGrasas()));
             }
             stamper.close();
             template.close();
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    private void setImageInPdf(AcroFields form, String field, String URL) throws DocumentException, IOException{
-            PushbuttonField img = form.getNewPushbuttonFromField(field);
-            img.setLayout(PushbuttonField.LAYOUT_ICON_ONLY);
-            img.setProportionalIcon(true);
-            img.setImage(Image.getInstance(URL));
-            form.replacePushbuttonField(field, img.getField());
+
+    private void setImageInPdf(AcroFields form, String field, String URL) throws DocumentException, IOException {
+        PushbuttonField img = form.getNewPushbuttonFromField(field);
+        img.setLayout(PushbuttonField.LAYOUT_ICON_ONLY);
+        img.setProportionalIcon(true);
+        img.setImage(Image.getInstance(URL));
+        form.replacePushbuttonField(field, img.getField());
     }
-    private void textfieldStyle(AcroFields form, String field, String fuente, float fSize) throws DocumentException, IOException{
-            BaseFont base = BaseFont.createFont("c:/windows/fonts/"+fuente+".ttf", BaseFont.WINANSI, false);
-            form.setFieldProperty(field, "textfont", base, null);
-            form.setFieldProperty(field, "textsize", fSize, null);
+
+    private void textfieldStyle(AcroFields form, String field, String fuente, float fSize) throws DocumentException, IOException {
+        BaseFont base = BaseFont.createFont("c:/windows/fonts/" + fuente + ".ttf", BaseFont.WINANSI, false);
+        form.setFieldProperty(field, "textfont", base, null);
+        form.setFieldProperty(field, "textsize", fSize, null);
     }
+
     private void initData(double imc) {
         ControladorRango conRango = new ControladorRango();
         try {
@@ -101,5 +106,14 @@ public class PdfCreator {
             System.out.println(e);
         }
 
+    }
+
+    public void openFile() {
+        try {
+            File file = new File(destino);
+            Desktop.getDesktop().open(file);
+        } catch (Exception e) {
+
+        }
     }
 }

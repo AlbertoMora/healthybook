@@ -110,6 +110,7 @@ public class frmTestDoc extends javax.swing.JFrame {
             PdfCreator pdf = new PdfCreator();
             try {
                 pdf.writePDF(22.49);
+                pdf.openFile();
             } catch (Exception e) {
                 System.out.println(e);
             }
