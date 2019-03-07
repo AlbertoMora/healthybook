@@ -5,6 +5,8 @@
  */
 package vistas;
 
+import javax.swing.SwingWorker;
+import libreriasExternas.MensajesModales;
 import libreriasExternas.PdfCreator;
 
 /**
@@ -12,7 +14,7 @@ import libreriasExternas.PdfCreator;
  * @author Alberto Mora
  */
 public class frmTestDoc extends javax.swing.JFrame {
-
+    MensajesModales cargaAsync = new MensajesModales();
     /**
      * Creates new form frmTestDoc
      */
@@ -62,12 +64,9 @@ public class frmTestDoc extends javax.swing.JFrame {
 
     private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
         // TODO add your handling code here:
-        PdfCreator pdf = new PdfCreator();
-        try{
-            pdf.writePDF(22.49);
-        }catch(Exception e){
-            System.out.println(e);
-        }
+        AsyncTask async;
+        (async = new AsyncTask()).execute();
+        cargaAsync.loading();
     }//GEN-LAST:event_btnPDFActionPerformed
 
     /**
@@ -105,6 +104,24 @@ public class frmTestDoc extends javax.swing.JFrame {
         });
     }
 
+    private class AsyncTask extends SwingWorker<Void, String> {
+        
+        protected Void doInBackground() throws Exception {
+            PdfCreator pdf = new PdfCreator();
+            try {
+                pdf.writePDF(22.49);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+           return null;
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPDF;
     // End of variables declaration//GEN-END:variables

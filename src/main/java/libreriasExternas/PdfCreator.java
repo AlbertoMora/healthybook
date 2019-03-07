@@ -13,6 +13,7 @@ import java.io.IOException;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.AcroFields;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PushbuttonField;
@@ -35,22 +36,22 @@ public class PdfCreator {
     ModeloRango rango;
     ModeloDieta dieta;
     ModeloRutina rutina;
-    ArrayList<ModeloTurno> turnos = new ArrayList();
+    ArrayList<ModeloTurno> turnos;
+    final String templateUrl = System.getProperty("user.dir") + "/resources/pdfTemplate.pdf";
+    final String destino = System.getProperty("user.dir") + "\\resources\\test.pdf";
 
     public boolean writePDF(double imc) throws IOException, FileNotFoundException, DocumentException {
         initData(imc);
-        if (rango != null && dieta != null && rutina != null /*&& turnos.size() != 0*/) {
-            PdfReader template = new PdfReader(System.getProperty("user.dir") + "/resources/pdfTemplate.pdf");
-            FileOutputStream fileos = new FileOutputStream(System.getProperty("user.dir") + "\\resources\\test.pdf");
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
+        if (rango != null && dieta != null && rutina != null && !turnos.isEmpty()) {
+            PdfReader template = new PdfReader(templateUrl);
+            FileOutputStream fileos = new FileOutputStream(destino);
             PdfStamper stamper = new PdfStamper(template, fileos);
             stamper.setFormFlattening(true);
             AcroFields form = stamper.getAcroFields();
-            PushbuttonField img = form.getNewPushbuttonFromField("imgDieta");
-            img.setLayout(PushbuttonField.LAYOUT_ICON_ONLY);
-            img.setProportionalIcon(true);
-            img.setImage(Image.getInstance("https://i.ibb.co/g9XGPMx/prueba.jpg"));
-            form.replacePushbuttonField("imgDieta", img.getField());
+            form.removeXfa();
+            textfieldStyle(form, "txtNombreDiet", "arialbd", 26f);
+            setImageInPdf(form, "imgDieta", dieta.getUriImagen());
+            setImageInPdf(form, "imgRutina", rutina.getUriImagen());
             stamper.getAcroFields().setField("txtNombreDiet", dieta.getNombre());
             stamper.getAcroFields().setField("txtDescDieta", dieta.getDescripcion());
             stamper.getAcroFields().setField("txtCalorias", Integer.toString(dieta.getCaloriasRed()));
@@ -58,6 +59,15 @@ public class PdfCreator {
             stamper.getAcroFields().setField("txtDescripRutina", rutina.getDescripcion());
             stamper.getAcroFields().setField("txtTiempoRutina", Double.toString(rutina.getDuracion()));
             stamper.getAcroFields().setField("txtUrlRutina", rutina.getUrl());
+            for(int c = 0; c < turnos.size(); c++){
+                int i = c+1;
+                stamper.getAcroFields().setField("txtHarina"+i, Integer.toString(turnos.get(c).getcHarinas()));
+                stamper.getAcroFields().setField("txtVeg"+i, Integer.toString(turnos.get(c).getcVegetales()));
+                stamper.getAcroFields().setField("txtLact"+i, Integer.toString(turnos.get(c).getcLacteos()));
+                stamper.getAcroFields().setField("txtCarne"+i, Integer.toString(turnos.get(c).getcCarne()));
+                stamper.getAcroFields().setField("txtFrutas"+i, Integer.toString(turnos.get(c).getcFrutas()));
+                stamper.getAcroFields().setField("txtGrasas"+i, Integer.toString(turnos.get(c).getcGrasas()));
+            }
             stamper.close();
             template.close();
             return true;
@@ -65,7 +75,18 @@ public class PdfCreator {
             return false;
         }
     }
-
+    private void setImageInPdf(AcroFields form, String field, String URL) throws DocumentException, IOException{
+            PushbuttonField img = form.getNewPushbuttonFromField(field);
+            img.setLayout(PushbuttonField.LAYOUT_ICON_ONLY);
+            img.setProportionalIcon(true);
+            img.setImage(Image.getInstance(URL));
+            form.replacePushbuttonField(field, img.getField());
+    }
+    private void textfieldStyle(AcroFields form, String field, String fuente, float fSize) throws DocumentException, IOException{
+            BaseFont base = BaseFont.createFont("c:/windows/fonts/"+fuente+".ttf", BaseFont.WINANSI, false);
+            form.setFieldProperty(field, "textfont", base, null);
+            form.setFieldProperty(field, "textsize", fSize, null);
+    }
     private void initData(double imc) {
         ControladorRango conRango = new ControladorRango();
         try {
@@ -75,6 +96,7 @@ public class PdfCreator {
             ControladorTurno conTurnos = new ControladorTurno();
             dieta = conDieta.obtenerDietaPorRango(rango.getId());
             rutina = conRutina.obtenerRutinaPorRango(rango.getId());
+            turnos = conTurnos.obtenerTurnosDieta(dieta.getId());
         } catch (Exception e) {
             System.out.println(e);
         }
