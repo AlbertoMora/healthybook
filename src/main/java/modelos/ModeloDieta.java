@@ -27,6 +27,10 @@ public class ModeloDieta {
         this.caloriasRed = caloriasRed;
         this.idRango = idRango;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public int getId() {
         return id;
