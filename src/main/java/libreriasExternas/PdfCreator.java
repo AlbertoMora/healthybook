@@ -23,6 +23,9 @@ import controladores.ControladorRutina;
 import controladores.ControladorTurno;
 import java.awt.Desktop;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import modelos.ModeloDieta;
 import modelos.ModeloRango;
@@ -41,9 +44,10 @@ public class PdfCreator {
     ArrayList<ModeloTurno> turnos;
     final String templateUrl = System.getProperty("user.dir") + "/resources/pdfTemplate.pdf";
     final String destino = System.getProperty("user.dir") + "\\resources\\test.pdf";
-
+    
     public boolean writePDF(double imc) throws IOException, FileNotFoundException, DocumentException {
         initData(imc);
+        deleteFile();
         if (rango != null && dieta != null && rutina != null && !turnos.isEmpty()) {
             PdfReader template = new PdfReader(templateUrl);
             FileOutputStream fileos = new FileOutputStream(destino);
@@ -115,5 +119,11 @@ public class PdfCreator {
         } catch (Exception e) {
 
         }
+    }
+    private void deleteFile(){
+        File file = new File(destino);
+        if(file.delete()){
+            System.out.println(destino + " File deleted");
+        }else System.out.println(destino + " doesn't exists");
     }
 }

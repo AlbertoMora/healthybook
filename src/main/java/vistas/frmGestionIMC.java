@@ -60,7 +60,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
         lblUsuario = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        frmIntranet = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnMinimizar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
@@ -137,28 +136,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
             }
         });
 
-        frmIntranet.setBackground(new java.awt.Color(177, 255, 160));
-        frmIntranet.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        frmIntranet.setForeground(new java.awt.Color(102, 102, 102));
-        frmIntranet.setText("Intranet");
-        frmIntranet.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        frmIntranet.setContentAreaFilled(false);
-        frmIntranet.setFocusPainted(false);
-        frmIntranet.setOpaque(true);
-        frmIntranet.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                frmIntranetMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                frmIntranetMouseReleased(evt);
-            }
-        });
-        frmIntranet.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIntranetActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,7 +150,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(frmIntranet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,9 +162,7 @@ public class frmGestionIMC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(frmIntranet, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -511,20 +485,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void frmIntranetMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIntranetMousePressed
-        // TODO add your handling code here:
-        frmIntranet.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_frmIntranetMousePressed
-
-    private void frmIntranetMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIntranetMouseReleased
-        // TODO add your handling code here:
-        frmIntranet.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_frmIntranetMouseReleased
-
-    private void frmIntranetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIntranetActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_frmIntranetActionPerformed
-
     private void btnHistoricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoricoActionPerformed
         // TODO add your handling code here:
         frmHistorialIMC historial = new frmHistorialIMC(sesion);
@@ -631,11 +591,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
         lblUsuario.setText(sesion.getNombre() + " " + sesion.getApellidos());
         ComponentMover cm = new ComponentMover();
         cm.registerComponent(this);
-        if(sesion.isEsAdmin()){
-            frmIntranet.setVisible(true);
-        }else{
-            frmIntranet.setVisible(false);
-        }
     }
 
     private void registrarIMC(double imc) {
@@ -742,7 +697,6 @@ public class frmGestionIMC extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton frmIntranet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

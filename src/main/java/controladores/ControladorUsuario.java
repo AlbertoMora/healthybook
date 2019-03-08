@@ -24,6 +24,7 @@ public class ControladorUsuario {
         String params[] = {user, password};
         data = db.CallProcedureWResults(query, params);
         if (data.next()) {
+
             usuario = new ModeloUsuario(data.getInt("id"), data.getString("nombre"), data.getString("apellidos"), data.getString("nombreUsuario"), data.getString("email"),
                     data.getString("contrasena"), data.getString("telefono"), data.getBoolean("esAdmin"));
             return usuario;

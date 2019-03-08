@@ -15,7 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import libreriasExternas.Correo;
 import libreriasExternas.MensajesModales;
+import libreriasExternas.PdfCreator;
 import modelos.ModeloIMC;
 import modelos.ModeloUsuario;
 
@@ -81,9 +83,10 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
-        btnPDF = new javax.swing.JButton();
+        btnEnviar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnVer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -219,25 +222,25 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         tblDatos.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblDatos);
 
-        btnPDF.setBackground(new java.awt.Color(153, 252, 240));
-        btnPDF.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
-        btnPDF.setForeground(new java.awt.Color(102, 102, 102));
-        btnPDF.setText("Ver PDF");
-        btnPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
-        btnPDF.setContentAreaFilled(false);
-        btnPDF.setFocusPainted(false);
-        btnPDF.setOpaque(true);
-        btnPDF.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEnviar.setBackground(new java.awt.Color(153, 252, 240));
+        btnEnviar.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(102, 102, 102));
+        btnEnviar.setText("Enviar PDF");
+        btnEnviar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
+        btnEnviar.setContentAreaFilled(false);
+        btnEnviar.setFocusPainted(false);
+        btnEnviar.setOpaque(true);
+        btnEnviar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnPDFMousePressed(evt);
+                btnEnviarMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                btnPDFMouseReleased(evt);
+                btnEnviarMouseReleased(evt);
             }
         });
-        btnPDF.addActionListener(new java.awt.event.ActionListener() {
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPDFActionPerformed(evt);
+                btnEnviarActionPerformed(evt);
             }
         });
 
@@ -285,6 +288,28 @@ public class frmHistorialIMC extends javax.swing.JFrame {
             }
         });
 
+        btnVer.setBackground(new java.awt.Color(153, 252, 240));
+        btnVer.setFont(new java.awt.Font("Nirmala UI", 1, 14)); // NOI18N
+        btnVer.setForeground(new java.awt.Color(102, 102, 102));
+        btnVer.setText("Ver PDF");
+        btnVer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
+        btnVer.setContentAreaFilled(false);
+        btnVer.setFocusPainted(false);
+        btnVer.setOpaque(true);
+        btnVer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btnVerMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVerMouseReleased(evt);
+            }
+        });
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -294,9 +319,11 @@ public class frmHistorialIMC extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,11 +335,13 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,19 +450,20 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void btnPDFMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMousePressed
+    private void btnEnviarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMousePressed
         // TODO add your handling code here:
-        btnPDF.setBorder(new LineBorder(new Color(0, 0, 0)));
-    }//GEN-LAST:event_btnPDFMousePressed
+        btnEnviar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnEnviarMousePressed
 
-    private void btnPDFMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPDFMouseReleased
+    private void btnEnviarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEnviarMouseReleased
         // TODO add your handling code here:
-        btnPDF.setBorder(new LineBorder(new Color(226, 224, 224)));
-    }//GEN-LAST:event_btnPDFMouseReleased
+        btnEnviar.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnEnviarMouseReleased
 
-    private void btnPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFActionPerformed
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPDFActionPerformed
+        gestionPdf(2);
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnVolverMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMousePressed
         // TODO add your handling code here:
@@ -473,7 +503,7 @@ public class frmHistorialIMC extends javax.swing.JFrame {
                     int idRow = tblDatos.getSelectedRow();
                     String idText = (String) tblDatos.getModel().getValueAt(idRow, 5);
                     System.out.println(idText);
-                    int id =  Integer.parseInt(idText);
+                    int id = Integer.parseInt(idText);
                     AsyncDelete borrar;
                     (borrar = new AsyncDelete(id)).execute();
                     cargaAsync.loading();
@@ -502,6 +532,53 @@ public class frmHistorialIMC extends javax.swing.JFrame {
             mensaje.ShowMessage();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnVerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMousePressed
+        // TODO add your handling code here:
+        btnVer.setBorder(new LineBorder(new Color(0, 0, 0)));
+    }//GEN-LAST:event_btnVerMousePressed
+
+    private void btnVerMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseReleased
+        // TODO add your handling code here:
+        btnVer.setBorder(new LineBorder(new Color(226, 224, 224)));
+    }//GEN-LAST:event_btnVerMouseReleased
+
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        // TODO add your handling code here:
+        gestionPdf(1);
+    }//GEN-LAST:event_btnVerActionPerformed
+    private void gestionPdf(int opcion){
+        MensajesModales mensaje;
+        if (tblDatos.getSelectedRows().length != 0) {
+            if (!(tblDatos.getSelectedRows().length > 1)) {
+                try {
+                    AsyncPdfGen send;
+                    double imc = Double.parseDouble((String) tblDatos.getValueAt(tblDatos.getSelectedRow(), 0));
+                    (send = new AsyncPdfGen(imc,opcion)).execute();
+                    cargaAsync.loading();
+                    boolean result = send.get();
+                    if (!result) {
+                        mensaje = new MensajesModales(this, "En este momento no tenemos información recomendada para este IMC", "Ok", 1);
+                        mensaje.ShowMessage();
+                    }else{
+                        if(opcion != 1){
+                            mensaje = new MensajesModales(this, "El correo ha sido enviado con éxito a la dirección: " + sesion.getEmail(), "Ok", 1);
+                            mensaje.ShowMessage();
+                        }
+                    }
+                } catch (Exception e) {
+                    mensaje = new MensajesModales(this, "En este momento no tenemos información recomendada para este IMC", "Ok", 1);
+                    mensaje.ShowMessage();
+                }
+            } else {
+                mensaje = new MensajesModales(this, "Por favor seleccione sólo un registro a la vez", "Ok", 1);
+                mensaje.ShowMessage();
+            }
+        } else {
+            mensaje = new MensajesModales(this, "Para realizar esta acción debe seleccionar un registro", "Ok", 1);
+            mensaje.ShowMessage();
+        }
+    }
     private void cargarTabla() {
         AsyncTask db;
         MensajesModales mensaje;
@@ -558,6 +635,44 @@ public class frmHistorialIMC extends javax.swing.JFrame {
         }
     }
 
+    private class AsyncPdfGen extends SwingWorker<Boolean, String> {
+
+        double imc;
+        int opcion;
+
+        public AsyncPdfGen(double imc, int opcion) {
+            this.imc = imc;
+            this.opcion = opcion;
+        }
+
+        protected Boolean doInBackground() throws Exception {
+            PdfCreator pdf = new PdfCreator();
+            try {
+                pdf.writePDF(imc);
+                if (opcion == 1) {
+                    pdf.openFile();
+                } else {
+                   String asunto = "Healthy tips - Archivo PDF";
+                   String mensaje = "Estimado(a) " + sesion.getNombre() + " " + sesion.getApellidos() + ":" 
+                           + "\n\nEl equipo de HealthyBook le envía un cordial saludo. Adjunto podrá encontrar el archivo PDF generado para su solicitud. Este contiene"
+                           + " tips importantes que le pueden ayudar a equilibrar su índice de masa corporal. \n\nSaludos cordiales, \nEquipo de HealthyBook";
+                   Correo correo = new Correo(mensaje, sesion.getEmail(), asunto);
+                   correo.enviarCorreo();
+                }
+                return true;
+            } catch (Exception e) {
+                System.out.println(e);
+                return false;
+            }
+        }
+
+        @Override
+        protected void done() {
+            cargaAsync.dispose();
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -592,9 +707,10 @@ public class frmHistorialIMC extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMinimizar;
-    private javax.swing.JButton btnPDF;
+    private javax.swing.JButton btnVer;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

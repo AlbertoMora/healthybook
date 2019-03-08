@@ -30,6 +30,12 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>7.0.0.jre8</version>
         </dependency>
+        <!-- Java Mailing -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.5.5</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

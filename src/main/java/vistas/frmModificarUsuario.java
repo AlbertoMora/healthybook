@@ -10,6 +10,9 @@ import controladores.ControladorUsuario;
 import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Insets;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 import javax.swing.border.LineBorder;
@@ -441,7 +444,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
             if (txtEmail.getText().matches(patronEmail)) {
                 if (!new String(txtNContra.getPassword()).isEmpty()) {
                     if (!new String(txtNContra.getPassword()).isEmpty() && !new String(txtConContra.getPassword()).isEmpty() && !new String(txtAContra.getPassword()).isEmpty()) {
-                        if (sesion.getContrasena().equals(new String(txtAContra.getPassword()))) {
+                        if (hashPass(new String(txtAContra.getPassword())).equalsIgnoreCase(sesion.getContrasena())) {
                             if (new String(txtNContra.getPassword()).equals(new String(txtConContra.getPassword()))) {
                                 ActualizarSesion(new String(txtNContra.getPassword()));
                             } else {
@@ -491,12 +494,12 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
     private void ActualizarSesion(String nContra) {
-        sesion.setNombre(txtNombre.getText().replace("'", "'"));
-        sesion.setApellidos(txtApe.getText().replace("'", "'"));
-        sesion.setEmail(txtEmail.getText().replace("'", "'"));
-        sesion.setNombreUsuario(txtUsuario.getText().replace("'", "'"));
+        sesion.setNombre(txtNombre.getText());
+        sesion.setApellidos(txtApe.getText());
+        sesion.setEmail(txtEmail.getText());
+        sesion.setNombreUsuario(txtUsuario.getText());
         sesion.setContrasena(nContra);
-        sesion.setTelefono(txtTelefono.getText().replace("'", "'"));
+        sesion.setTelefono(txtTelefono.getText());
         MensajesModales mensaje;
         AsyncTask consulta;
         boolean result = false;
@@ -521,7 +524,23 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         }
 
     }
-
+    public String hashPass(String passwordToHash) {
+        String generatedPassword = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < bytes.length; i++) {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            generatedPassword = sb.toString();
+            System.out.println("TxT: " + generatedPassword + "\n Sesion: " + sesion.getContrasena());
+            
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return generatedPassword;
+    }
     /**
      * @param args the command line arguments
      */
