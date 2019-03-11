@@ -70,6 +70,7 @@ public class frmLogin extends javax.swing.JFrame {
         btnCerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnCerrar.setContentAreaFilled(false);
         btnCerrar.setFocusPainted(false);
+        btnCerrar.setFocusable(false);
         btnCerrar.setMargin(new Insets(0,0,0,0));
         btnCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -91,6 +92,7 @@ public class frmLogin extends javax.swing.JFrame {
         btnMinimizar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(226, 224, 224)));
         btnMinimizar.setContentAreaFilled(false);
         btnMinimizar.setFocusPainted(false);
+        btnMinimizar.setFocusable(false);
         btnMinimizar.setMargin(new Insets(0,0,0,0));
         btnMinimizar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
