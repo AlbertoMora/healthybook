@@ -442,7 +442,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         String patronEmail = "^[0-9a-zA-Z]+([0-9a-zA-Z]*[-._+])*[0-9a-zA-Z]+@[0-9a-zA-Z]+([-.][0-9a-zA-Z]+)*([0-9a-zA-Z]*[.])[a-zA-Z]{2,6}$";
         if (!txtNombre.getText().isEmpty() && !txtApe.getText().isEmpty() && !txtEmail.getText().isEmpty()) {
             if (txtEmail.getText().matches(patronEmail)) {
-                if (!new String(txtNContra.getPassword()).isEmpty()) {
+                if (!new String(txtNContra.getPassword()).isEmpty()){
                     if (!new String(txtNContra.getPassword()).isEmpty() && !new String(txtConContra.getPassword()).isEmpty() && !new String(txtAContra.getPassword()).isEmpty()) {
                         if (hashPass(new String(txtAContra.getPassword())).equalsIgnoreCase(sesion.getContrasena())) {
                             if (new String(txtNContra.getPassword()).equals(new String(txtConContra.getPassword()))) {
@@ -502,7 +502,7 @@ public class frmModificarUsuario extends javax.swing.JFrame {
         sesion.setTelefono(txtTelefono.getText());
         MensajesModales mensaje;
         AsyncTask consulta;
-        boolean result = false;
+        boolean result;
         try {
             (consulta = new AsyncTask(sesion)).execute();
             cargaAsync.loading();

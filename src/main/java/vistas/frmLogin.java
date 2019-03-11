@@ -30,6 +30,7 @@ public class frmLogin extends javax.swing.JFrame {
     public frmLogin() {
         initComponents();
         setLocationRelativeTo(null);
+        this.getRootPane().setDefaultButton(btnLogin);
     }
 
     /**
